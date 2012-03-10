@@ -16,15 +16,65 @@
     <Filter Include="zlib">
       <UniqueIdentifier>{1416a25c-ea65-4b2e-ac9a-73bc40f7e753}</UniqueIdentifier>
     </Filter>
+    <Filter Include="cppNBT">
+      <UniqueIdentifier>{0af6d890-ef87-47ff-a9ed-13d1d5a2aa6b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cppNBT\src\nbtfile.cc">
+      <Filter>cppNBT</Filter>
+    </ClCompile>
+    <ClCompile Include="cppNBT\src\tag.cc">
+      <Filter>cppNBT</Filter>
+    </ClCompile>
+    <ClCompile Include="cppNBT\src\tag_byte.cc">
+      <Filter>cppNBT</Filter>
+    </ClCompile>
+    <ClCompile Include="cppNBT\src\tag_byte_array.cc">
+      <Filter>cppNBT</Filter>
+    </ClCompile>
+    <ClCompile Include="cppNBT\src\tag_compound.cc">
+      <Filter>cppNBT</Filter>
+    </ClCompile>
+    <ClCompile Include="cppNBT\src\tag_double.cc">
+      <Filter>cppNBT</Filter>
+    </ClCompile>
+    <ClCompile Include="cppNBT\src\tag_end.cc">
+      <Filter>cppNBT</Filter>
+    </ClCompile>
+    <ClCompile Include="cppNBT\src\tag_float.cc">
+      <Filter>cppNBT</Filter>
+    </ClCompile>
+    <ClCompile Include="cppNBT\src\tag_int.cc">
+      <Filter>cppNBT</Filter>
+    </ClCompile>
+    <ClCompile Include="cppNBT\src\tag_list.cc">
+      <Filter>cppNBT</Filter>
+    </ClCompile>
+    <ClCompile Include="cppNBT\src\tag_long.cc">
+      <Filter>cppNBT</Filter>
+    </ClCompile>
+    <ClCompile Include="cppNBT\src\tag_short.cc">
+      <Filter>cppNBT</Filter>
+    </ClCompile>
+    <ClCompile Include="cppNBT\src\tag_string.cc">
+      <Filter>cppNBT</Filter>
+    </ClCompile>
+    <ClCompile Include="cppNBT\src\util.cc">
+      <Filter>cppNBT</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="zdll.lib">
       <Filter>zlib</Filter>
     </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cppNBT\src\cppnbt.h">
+      <Filter>cppNBT</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

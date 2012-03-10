@@ -60,10 +60,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cppNBT\src\nbtfile.cc" />
+    <ClCompile Include="cppNBT\src\tag.cc" />
+    <ClCompile Include="cppNBT\src\tag_byte.cc" />
+    <ClCompile Include="cppNBT\src\tag_byte_array.cc" />
+    <ClCompile Include="cppNBT\src\tag_compound.cc" />
+    <ClCompile Include="cppNBT\src\tag_double.cc" />
+    <ClCompile Include="cppNBT\src\tag_end.cc" />
+    <ClCompile Include="cppNBT\src\tag_float.cc" />
+    <ClCompile Include="cppNBT\src\tag_int.cc" />
+    <ClCompile Include="cppNBT\src\tag_list.cc" />
+    <ClCompile Include="cppNBT\src\tag_long.cc" />
+    <ClCompile Include="cppNBT\src\tag_short.cc" />
+    <ClCompile Include="cppNBT\src\tag_string.cc" />
+    <ClCompile Include="cppNBT\src\util.cc" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="zdll.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cppNBT\src\cppnbt.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
