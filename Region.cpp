@@ -25,28 +25,20 @@ void Region::go()
 	
 	if (inStream.is_open())
 	{
-		int fileSize = inStream.tellg();
+        int fileSize = inStream.tellg();
+		cout << "Reading \"" << fileName.c_str() << "\"  -->  " << fileSize << " bytes" << endl;
+
 		char *data = new char[fileSize];
 
 		inStream.seekg(ios::beg, 0);
 		inStream.read(data, fileSize);
 
         RegionHeader *regionHeader = new RegionHeader();
-
         memcpy(regionHeader, data, sizeof(RegionHeader));
 
-        for (int i = 0; i < 1024; ++i)
-        {
-            if (regionHeader->locations[i].isValid())
-            {
-                cout << "[" << i << "] ";
-                regionHeader->locations[i].dump();
-            }
-        }
+        regionHeader->dump();
 
-		cout << "Reading \"" << fileName.c_str() << "\"  -->  " << fileSize << " bytes" << endl;
-
-		inStream.close();
+        inStream.close();
 	}
 	else
 	{

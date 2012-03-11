@@ -15,7 +15,7 @@ typedef struct ChunkLocation
     }
 
     unsigned int getSize()  { return data[3]; }
-    void dump()             { cout << "ChunkLocation raw 0x" << hex << *((int *)data) << dec << " offset " << this->getOffset() << ", size " << this->getSize() << endl; }
+    void dump()             { cout << "ChunkLocation raw 0x" << hex << *((int *)data) << dec << ", offset " << this->getOffset() << ", size " << this->getSize(); }
     bool isValid()          { return data[0] || data[1] || data[2] || data[3]; }
 
 } ChunkLocation;
@@ -23,7 +23,21 @@ typedef struct ChunkLocation
 typedef struct RegionHeader
 {
     struct ChunkLocation locations[1024];
-    int timeStamp[1024];
+    unsigned int timeStamp[1024];
+
+    void dump()
+    {
+        for (int i = 0; i < 1024; ++i)
+        {
+            if (locations[i].isValid())
+            {
+                cout << "[" << i << "] ";
+                locations[i].dump();
+                cout << ", time " << timeStamp[i] << endl; 
+            }
+        }
+    }
+    
 } RegionHeader;
 
 class Region
