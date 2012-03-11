@@ -66,6 +66,9 @@
     <ClCompile Include="cppNBT\src\util.cc">
       <Filter>cppNBT</Filter>
     </ClCompile>
+    <ClCompile Include="Region.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="zdll.lib">
@@ -75,6 +78,9 @@
   <ItemGroup>
     <ClInclude Include="cppNBT\src\cppnbt.h">
       <Filter>cppNBT</Filter>
+    </ClInclude>
+    <ClInclude Include="Region.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include "cppNBT\src\cppnbt.h"
+#include "Region.h"
 using namespace std;
 using namespace nbt;
 
@@ -15,7 +16,6 @@ int main(int numArgs, char **args)
 	string levelString(""); 
 	levelString += DEFAULT_WORLD_DIRECTORY;
 	levelString += "\\level.dat";
-	//levelString += "\\region\\r.0.0.mca";
 
 	try
 	{
@@ -23,13 +23,19 @@ int main(int numArgs, char **args)
 		nbtFile.open(levelString, "rb");
 		nbtFile.read();
 		Tag *rootTag = nbtFile.getRoot();
-		cout << "description " << rootTag->toString() << endl;
-		cout << "name " << rootTag->getName() << endl;
+		cout << rootTag->toString() << endl;
 	}
 	catch (GzipIOException &exception)
 	{
 		cout << "Failed to open NBT file.  Error: " << exception.what() << endl;
 	}
+
+    string testMcaString("");
+    testMcaString += DEFAULT_WORLD_DIRECTORY;
+    testMcaString += "\\region\\r.0.0.mca";
+        
+    Region region(testMcaString);
+    region.go();
 
 	//ifstream inStream;
 	//inStream.open(levelString.c_str(), ios::in | ios::binary | ios::ate);
@@ -51,7 +57,7 @@ int main(int numArgs, char **args)
 	//	cout << "Failed to open file \"" << levelString.c_str() << "\"" << endl;
 	//}
 
-	std::cin.get();
+	//std::cin.get();
 
 	return 0;
 }

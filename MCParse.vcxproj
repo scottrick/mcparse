@@ -75,12 +75,14 @@
     <ClCompile Include="cppNBT\src\tag_string.cc" />
     <ClCompile Include="cppNBT\src\util.cc" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Region.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="zdll.lib" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cppNBT\src\cppnbt.h" />
+    <ClInclude Include="Region.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
