@@ -35,29 +35,6 @@ int main(int numArgs, char **args)
     testMcaString += "\\region\\r.0.0.mca";
         
     Region region(testMcaString);
-    region.go();
-
-	//ifstream inStream;
-	//inStream.open(levelString.c_str(), ios::in | ios::binary | ios::ate);
-	//
-	//if (inStream.is_open())
-	//{
-	//	int fileSize = inStream.tellg();
-	//	char *data = new char[fileSize];
-
-	//	inStream.seekg(ios::beg, 0);
-	//	inStream.read(data, fileSize);
-
-	//	cout << "Reading \"" << levelString.c_str() << "\"  -->  " << fileSize << " bytes" << endl;
-
-	//	inStream.close();
-	//}
-	//else
-	//{
-	//	cout << "Failed to open file \"" << levelString.c_str() << "\"" << endl;
-	//}
-
-	//std::cin.get();
 
 	return 0;
 }
