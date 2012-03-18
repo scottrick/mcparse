@@ -12,18 +12,18 @@ public:
 
     virtual ~Region();
 
-    char *getData() const                                   { return data; }
+    unsigned char *getData() const                                   { return data; }
     string getFileName() const                              { return fileName; }
 
     void open(); //open the region file and keep the data in memory
     void close(); //remove the region file from memory
 
 protected:
-    void setData(char *newData);
+    void setData(unsigned char *newData);
 
 private:
     string fileName;
-    char *data;
+    unsigned char *data;
 
     list<Chunk *> m_ChunkList;
 };

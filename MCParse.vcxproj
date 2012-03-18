@@ -61,6 +61,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Chunk.cpp" />
+    <ClCompile Include="cppNBT\src\nbtbuffer.cc" />
     <ClCompile Include="cppNBT\src\nbtfile.cc" />
     <ClCompile Include="cppNBT\src\tag.cc" />
     <ClCompile Include="cppNBT\src\tag_byte.cc" />

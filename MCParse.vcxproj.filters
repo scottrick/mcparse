@@ -72,6 +72,9 @@
     <ClCompile Include="Chunk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cppNBT\src\nbtbuffer.cc">
+      <Filter>cppNBT</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="zdll.lib">

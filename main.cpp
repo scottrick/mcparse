@@ -30,11 +30,19 @@ int main(int numArgs, char **args)
 		cout << "Failed to open NBT file.  Error: " << exception.what() << endl;
 	}
 
-    string testMcaString("");
-    testMcaString += DEFAULT_WORLD_DIRECTORY;
-    testMcaString += "\\region\\r.0.0.mca";
-        
-    Region region(testMcaString);
+    {
+        string testMcaString("");
+        testMcaString += DEFAULT_WORLD_DIRECTORY;
+        testMcaString += "\\region\\r.0.0.mca";
+        Region region(testMcaString);
+    }
 
-	return 0;
+    {
+        string testMcaString("");
+        testMcaString += DEFAULT_WORLD_DIRECTORY;
+        testMcaString += "\\region\\r.-1.0.mca";
+        Region region(testMcaString);
+    }
+
+    return 0;
 }

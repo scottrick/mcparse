@@ -56,10 +56,10 @@ void Region::open()
         int fileSize = (int)inStream.tellg();
 		cout << "Reading \"" << fileName.c_str() << "\"  -->  " << fileSize << " bytes" << endl;
 
-		char *newData = new char[fileSize];
+		unsigned char *newData = new unsigned char[fileSize];
 
 		inStream.seekg(ios::beg, 0);
-		inStream.read(newData, fileSize);
+		inStream.read((char *)newData, fileSize);
 
         setData(newData);
         RegionHeader *regionHeader = (RegionHeader *)newData;
@@ -83,7 +83,7 @@ void Region::open()
 	}
 }
 
-void Region::setData(char *newData)
+void Region::setData(unsigned char *newData)
 {
     if (newData != data)
     {
