@@ -75,6 +75,9 @@
     <ClCompile Include="cppNBT\src\nbtbuffer.cc">
       <Filter>cppNBT</Filter>
     </ClCompile>
+    <ClCompile Include="cppNBT\src\tag_int_array.cc">
+      <Filter>cppNBT</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="zdll.lib">

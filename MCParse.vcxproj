@@ -71,6 +71,7 @@
     <ClCompile Include="cppNBT\src\tag_end.cc" />
     <ClCompile Include="cppNBT\src\tag_float.cc" />
     <ClCompile Include="cppNBT\src\tag_int.cc" />
+    <ClCompile Include="cppNBT\src\tag_int_array.cc" />
     <ClCompile Include="cppNBT\src\tag_list.cc" />
     <ClCompile Include="cppNBT\src\tag_long.cc" />
     <ClCompile Include="cppNBT\src\tag_short.cc" />

@@ -32,6 +32,14 @@ void Chunk::go()
     ChunkHeader *header = (ChunkHeader *)dataStart;
 
     nbt::NbtBuffer nbtBuffer(dataStart + sizeof(ChunkHeader), header->getChunkLength());
+
+    static bool debug = true;
+
+    if (debug)
+    { //print out one chunk for now :)
+        cout << nbtBuffer.getRoot()->toString() << endl;
+        debug = false;
+    }
 }
 
 void Chunk::setChunkLocation(const ChunkLocation *location)
