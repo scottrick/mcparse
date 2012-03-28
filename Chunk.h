@@ -1,4 +1,4 @@
-#include "def.h"
+#include "minecraft_def.h"
 
 #include "cppNBT\src\cppnbt.h"
 

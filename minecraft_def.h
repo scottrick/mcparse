@@ -1,5 +1,5 @@
-#ifndef DEF_H
-#define DEF_H
+#ifndef MINECRAFT_DEF_H
+#define MINECRAFT_DEF_H
 
 #include <cassert>
 #include <iostream>

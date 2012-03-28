@@ -12,7 +12,7 @@ public:
 
     virtual ~Region();
 
-    unsigned char *getData() const                                   { return data; }
+    unsigned char *getData() const                          { return data; }
     string getFileName() const                              { return fileName; }
 
     void open(); //open the region file and keep the data in memory

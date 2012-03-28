@@ -1,6 +1,6 @@
 #include "Chunk.h"
 
-#include "def.h"
+#include "minecraft_def.h"
 #include "Region.h"
 #include "cppNBT\src\cppnbt.h"
 
@@ -33,7 +33,7 @@ void Chunk::go()
 
     nbt::NbtBuffer nbtBuffer(dataStart + sizeof(ChunkHeader), header->getChunkLength());
 
-    static bool debug = true;
+    static bool debug = false;
 
     if (debug)
     { //print out one chunk for now :)

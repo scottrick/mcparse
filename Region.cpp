@@ -2,7 +2,7 @@
 
 #include "cppNBT\src\cppnbt.h"
 #include "Chunk.h"
-#include "def.h"
+#include "minecraft_def.h"
 
 #include <fstream>
 using namespace std;

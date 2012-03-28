@@ -3,7 +3,9 @@
 #include <fstream>
 #include <iostream>
 #include "cppNBT\src\cppnbt.h"
+#include "GLContext.h"
 #include "Region.h"
+
 using namespace std;
 using namespace nbt;
 
@@ -30,12 +32,12 @@ int main(int numArgs, char **args)
 		cout << "Failed to open NBT file.  Error: " << exception.what() << endl;
 	}
 
-    {
-        string testMcaString("");
-        testMcaString += DEFAULT_WORLD_DIRECTORY;
-        testMcaString += "\\region\\r.0.0.mca";
-        Region region(testMcaString);
-    }
+    //{
+    //    string testMcaString("");
+    //    testMcaString += DEFAULT_WORLD_DIRECTORY;
+    //    testMcaString += "\\region\\r.0.0.mca";
+    //    Region region(testMcaString);
+    //}
 
     //{
     //    string testMcaString("");
@@ -43,6 +45,9 @@ int main(int numArgs, char **args)
     //    testMcaString += "\\region\\r.-1.0.mca";
     //    Region region(testMcaString);
     //}
+
+    GLContext context;
+    context.create(&numArgs, args);
 
     return 0;
 }

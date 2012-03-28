@@ -5,19 +5,17 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="zlib">
       <UniqueIdentifier>{1416a25c-ea65-4b2e-ac9a-73bc40f7e753}</UniqueIdentifier>
     </Filter>
     <Filter Include="cppNBT">
       <UniqueIdentifier>{0af6d890-ef87-47ff-a9ed-13d1d5a2aa6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GL">
+      <UniqueIdentifier>{a46fc7a8-a56f-4dd2-9262-7e10b4c26ae7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Minecraft Stuff">
+      <UniqueIdentifier>{812e1140-8825-4750-ae56-81c12594df77}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -66,17 +64,20 @@
     <ClCompile Include="cppNBT\src\util.cc">
       <Filter>cppNBT</Filter>
     </ClCompile>
-    <ClCompile Include="Region.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Chunk.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cppNBT\src\nbtbuffer.cc">
       <Filter>cppNBT</Filter>
     </ClCompile>
     <ClCompile Include="cppNBT\src\tag_int_array.cc">
       <Filter>cppNBT</Filter>
+    </ClCompile>
+    <ClCompile Include="GLContext.cpp">
+      <Filter>GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Chunk.cpp">
+      <Filter>Minecraft Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="Region.cpp">
+      <Filter>Minecraft Stuff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -88,14 +89,17 @@
     <ClInclude Include="cppNBT\src\cppnbt.h">
       <Filter>cppNBT</Filter>
     </ClInclude>
-    <ClInclude Include="Region.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="def.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GLContext.h">
+      <Filter>GL</Filter>
     </ClInclude>
     <ClInclude Include="Chunk.h">
-      <Filter>Header Files</Filter>
+      <Filter>Minecraft Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Region.h">
+      <Filter>Minecraft Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="minecraft_def.h">
+      <Filter>Minecraft Stuff</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
