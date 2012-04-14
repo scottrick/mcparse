@@ -9,14 +9,13 @@ public:
 	PosQuat();
 	~PosQuat();
 
-	void				Print(int indent = 0) const;
+	void        print(int indent = 0) const;
 
-	//DATA
-	VEC3				pos;
-	Quat				quat;
+	VEC3        pos;
+	Quat        quat;
 
 private:
-	void				Init();
+
 };
 
 #endif

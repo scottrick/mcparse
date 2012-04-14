@@ -11,25 +11,24 @@ public:
 	Matrix44();
 	~Matrix44();
 
-	void						Print() const;
-	Quat						ToQuat() const;
+    Quat            getQuat() const;
+	Matrix44        getRotationalInverse() const;
 
-	Matrix44					ToRotationalInverse() const;
+	void            print() const;
 
-	float						m[16];
-								/*
-									MATRIX STORED LIKE THIS (like OpenGL wants them):
+	float           m[16];
+    /*
+        MATRIX STORED LIKE THIS (like OpenGL wants them):
 
-									[  m0   m4   m8   m12  ]
-									[  m1   m5   m9   m13  ]
-									[  m2   m6   m10  m14  ]
-									[  m3   m7   m11  m15  ]
-								*/
+        [  m0   m4   m8   m12  ]
+        [  m1   m5   m9   m13  ]
+        [  m2   m6   m10  m14  ]
+        [  m3   m7   m11  m15  ]
+    */
 
 private:
-	void						Init();	
-	
-	
+	void            init();	
+
 };
 
 #endif

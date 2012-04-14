@@ -8,7 +8,7 @@ using namespace std;
 
 Matrix44::Matrix44()
 {
-	Init();
+	init();
 }
 
 Matrix44::~Matrix44()
@@ -16,7 +16,7 @@ Matrix44::~Matrix44()
 	
 }
 
-void Matrix44::Init()
+void Matrix44::init()
 {
 	m[0]   = 0.0f;
 	m[1]   = 0.0f;
@@ -36,16 +36,7 @@ void Matrix44::Init()
 	m[15]  = 0.0f;
 }
 
-void Matrix44::Print() const
-{
-	printf("Matrix 0x%p\n", this);
-	printf("  [%f, %f, %f, %f]\n", m[0], m[4], m[8], m[12]);
-	printf("  [%f, %f, %f, %f]\n", m[1], m[5], m[9], m[13]);
-	printf("  [%f, %f, %f, %f]\n", m[2], m[6], m[10], m[14]);
-	printf("  [%f, %f, %f, %f]\n", m[3], m[7], m[11], m[15]);
-}
-
-Quat Matrix44::ToQuat() const
+Quat Matrix44::getQuat() const
 {
 	Quat				newQuat;
 	float				tr, s, q[4];
@@ -102,7 +93,7 @@ Quat Matrix44::ToQuat() const
 	return newQuat;
 }
 
-Matrix44 Matrix44::ToRotationalInverse() const
+Matrix44 Matrix44::getRotationalInverse() const
 {
 	Matrix44 RotInv;
 
@@ -124,4 +115,13 @@ Matrix44 Matrix44::ToRotationalInverse() const
 	RotInv.m[15]	= m[15];
 
 	return RotInv;
+}
+
+void Matrix44::print() const
+{
+	printf("Matrix 0x%p\n", this);
+	printf("  [%f, %f, %f, %f]\n", m[0], m[4], m[8], m[12]);
+	printf("  [%f, %f, %f, %f]\n", m[1], m[5], m[9], m[13]);
+	printf("  [%f, %f, %f, %f]\n", m[2], m[6], m[10], m[14]);
+	printf("  [%f, %f, %f, %f]\n", m[3], m[7], m[11], m[15]);
 }
