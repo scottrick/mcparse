@@ -17,6 +17,9 @@
     <Filter Include="Minecraft Stuff">
       <UniqueIdentifier>{812e1140-8825-4750-ae56-81c12594df77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="etc">
+      <UniqueIdentifier>{8258b465-207e-4537-a045-91a7a1e67d83}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -79,6 +82,15 @@
     <ClCompile Include="Region.cpp">
       <Filter>Minecraft Stuff</Filter>
     </ClCompile>
+    <ClCompile Include="etc\Quat.cpp">
+      <Filter>etc</Filter>
+    </ClCompile>
+    <ClCompile Include="etc\PosQuat.cpp">
+      <Filter>etc</Filter>
+    </ClCompile>
+    <ClCompile Include="etc\Matrix44.cpp">
+      <Filter>etc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="zdll.lib">
@@ -100,6 +112,21 @@
     </ClInclude>
     <ClInclude Include="minecraft_def.h">
       <Filter>Minecraft Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="etc\Node.h">
+      <Filter>etc</Filter>
+    </ClInclude>
+    <ClInclude Include="etc\Quat.h">
+      <Filter>etc</Filter>
+    </ClInclude>
+    <ClInclude Include="etc\PosQuat.h">
+      <Filter>etc</Filter>
+    </ClInclude>
+    <ClInclude Include="etc\etc_def.h">
+      <Filter>etc</Filter>
+    </ClInclude>
+    <ClInclude Include="etc\Matrix44.h">
+      <Filter>etc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
