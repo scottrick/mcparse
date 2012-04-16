@@ -73,9 +73,6 @@
     <ClCompile Include="cppNBT\src\tag_int_array.cc">
       <Filter>cppNBT</Filter>
     </ClCompile>
-    <ClCompile Include="GLContext.cpp">
-      <Filter>GL</Filter>
-    </ClCompile>
     <ClCompile Include="Chunk.cpp">
       <Filter>Minecraft Stuff</Filter>
     </ClCompile>
@@ -91,6 +88,18 @@
     <ClCompile Include="etc\Matrix44.cpp">
       <Filter>etc</Filter>
     </ClCompile>
+    <ClCompile Include="GLCamera.cpp">
+      <Filter>GL</Filter>
+    </ClCompile>
+    <ClCompile Include="GLContext.cpp">
+      <Filter>GL</Filter>
+    </ClCompile>
+    <ClCompile Include="GLOriginTest.cpp">
+      <Filter>GL</Filter>
+    </ClCompile>
+    <ClCompile Include="GLScene.cpp">
+      <Filter>GL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="zdll.lib">
@@ -100,9 +109,6 @@
   <ItemGroup>
     <ClInclude Include="cppNBT\src\cppnbt.h">
       <Filter>cppNBT</Filter>
-    </ClInclude>
-    <ClInclude Include="GLContext.h">
-      <Filter>GL</Filter>
     </ClInclude>
     <ClInclude Include="Chunk.h">
       <Filter>Minecraft Stuff</Filter>
@@ -127,6 +133,18 @@
     </ClInclude>
     <ClInclude Include="etc\Matrix44.h">
       <Filter>etc</Filter>
+    </ClInclude>
+    <ClInclude Include="GLCamera.h">
+      <Filter>GL</Filter>
+    </ClInclude>
+    <ClInclude Include="GLContext.h">
+      <Filter>GL</Filter>
+    </ClInclude>
+    <ClInclude Include="GLOriginTest.h">
+      <Filter>GL</Filter>
+    </ClInclude>
+    <ClInclude Include="GLScene.h">
+      <Filter>GL</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

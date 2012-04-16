@@ -44,6 +44,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -80,7 +81,10 @@
     <ClCompile Include="etc\Matrix44.cpp" />
     <ClCompile Include="etc\PosQuat.cpp" />
     <ClCompile Include="etc\Quat.cpp" />
+    <ClCompile Include="GLCamera.cpp" />
     <ClCompile Include="GLContext.cpp" />
+    <ClCompile Include="GLOriginTest.cpp" />
+    <ClCompile Include="GLScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Region.cpp" />
   </ItemGroup>
@@ -95,8 +99,11 @@
     <ClInclude Include="etc\Node.h" />
     <ClInclude Include="etc\PosQuat.h" />
     <ClInclude Include="etc\Quat.h" />
-    <ClInclude Include="minecraft_def.h" />
+    <ClInclude Include="GLCamera.h" />
     <ClInclude Include="GLContext.h" />
+    <ClInclude Include="GLOriginTest.h" />
+    <ClInclude Include="GLScene.h" />
+    <ClInclude Include="minecraft_def.h" />
     <ClInclude Include="Region.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
