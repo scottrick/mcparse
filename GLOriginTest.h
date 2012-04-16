@@ -17,7 +17,9 @@ protected:
     void setupBuffer();
 
 private:
-    GLuint vertexArrayID;  
+    GLuint vaoID;  
+    GLuint vertexVBO_ID;
+    GLuint indexVBO_ID;
 };
 
 #endif
