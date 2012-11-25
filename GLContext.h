@@ -1,6 +1,7 @@
 #ifndef GL_CONTEXT_H
 #define GL_CONTEXT_H
 
+#include <stdlib.h>
 #include <GL/glew.h>
 #include <GL/glut.h>
 
