@@ -37,6 +37,7 @@ void GLContext::create(int *argcp, char **argv)
     dumpInfo();
     dumpExtensions();
 
+	glewExperimental = GL_TRUE;
     GLenum initError = glewInit();
     if (initError != GLEW_OK)
     {

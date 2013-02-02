@@ -64,9 +64,10 @@ void Region::open()
         setData(newData);
         RegionHeader *regionHeader = (RegionHeader *)newData;
 
-        //regionHeader->dump();
+        regionHeader->dump();
 
-        for (int i = 0; i < CHUNKS_PER_REGION; ++i)
+        //for (int i = 0; i < CHUNKS_PER_REGION; ++i)
+        for (int i = 0; i < 8; ++i)
         {
             if (regionHeader->locations[i].isValid())
             {

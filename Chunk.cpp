@@ -33,7 +33,7 @@ void Chunk::go()
 
     nbt::NbtBuffer nbtBuffer(dataStart + sizeof(ChunkHeader), header->getChunkLength());
 
-    static bool debug = false;
+    static bool debug = true;
 
     if (debug)
     { //print out one chunk for now :)
