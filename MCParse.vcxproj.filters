@@ -5,9 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="zlib">
-      <UniqueIdentifier>{1416a25c-ea65-4b2e-ac9a-73bc40f7e753}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cppNBT">
       <UniqueIdentifier>{0af6d890-ef87-47ff-a9ed-13d1d5a2aa6b}</UniqueIdentifier>
     </Filter>
@@ -16,9 +13,6 @@
     </Filter>
     <Filter Include="Minecraft Stuff">
       <UniqueIdentifier>{812e1140-8825-4750-ae56-81c12594df77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="etc">
-      <UniqueIdentifier>{8258b465-207e-4537-a045-91a7a1e67d83}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -79,32 +73,6 @@
     <ClCompile Include="Region.cpp">
       <Filter>Minecraft Stuff</Filter>
     </ClCompile>
-    <ClCompile Include="etc\Quat.cpp">
-      <Filter>etc</Filter>
-    </ClCompile>
-    <ClCompile Include="etc\PosQuat.cpp">
-      <Filter>etc</Filter>
-    </ClCompile>
-    <ClCompile Include="etc\Matrix44.cpp">
-      <Filter>etc</Filter>
-    </ClCompile>
-    <ClCompile Include="GLCamera.cpp">
-      <Filter>GL</Filter>
-    </ClCompile>
-    <ClCompile Include="GLContext.cpp">
-      <Filter>GL</Filter>
-    </ClCompile>
-    <ClCompile Include="GLOriginTest.cpp">
-      <Filter>GL</Filter>
-    </ClCompile>
-    <ClCompile Include="GLScene.cpp">
-      <Filter>GL</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="zdll.lib">
-      <Filter>zlib</Filter>
-    </Library>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cppNBT\src\cppnbt.h">
@@ -118,33 +86,6 @@
     </ClInclude>
     <ClInclude Include="minecraft_def.h">
       <Filter>Minecraft Stuff</Filter>
-    </ClInclude>
-    <ClInclude Include="etc\Node.h">
-      <Filter>etc</Filter>
-    </ClInclude>
-    <ClInclude Include="etc\Quat.h">
-      <Filter>etc</Filter>
-    </ClInclude>
-    <ClInclude Include="etc\PosQuat.h">
-      <Filter>etc</Filter>
-    </ClInclude>
-    <ClInclude Include="etc\etc_def.h">
-      <Filter>etc</Filter>
-    </ClInclude>
-    <ClInclude Include="etc\Matrix44.h">
-      <Filter>etc</Filter>
-    </ClInclude>
-    <ClInclude Include="GLCamera.h">
-      <Filter>GL</Filter>
-    </ClInclude>
-    <ClInclude Include="GLContext.h">
-      <Filter>GL</Filter>
-    </ClInclude>
-    <ClInclude Include="GLOriginTest.h">
-      <Filter>GL</Filter>
-    </ClInclude>
-    <ClInclude Include="GLScene.h">
-      <Filter>GL</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

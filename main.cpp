@@ -1,9 +1,10 @@
 #include "zlib.h"
 
+#pragma comment(lib, "zdll")
+
 #include <fstream>
 #include <iostream>
 #include "cppNBT\src\cppnbt.h"
-#include "GLContext.h"
 #include "Region.h"
 
 using namespace std;
@@ -45,9 +46,6 @@ int main(int numArgs, char **args)
     //    testMcaString += "\\region\\r.-1.0.mca";
     //    Region region(testMcaString);
     //}
-
-    GLContext context;
-    context.create(&numArgs, args);
 
     return 0;
 }
