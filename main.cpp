@@ -2,13 +2,15 @@
 
 #pragma comment(lib, "zdll")
 
+#include "opengl\GLContext.h"
+
 #include <fstream>
 #include <iostream>
-#include "cppNBT\src\cppnbt.h"
+//#include "cppNBT\src\cppnbt.h"
 #include "Region.h"
 
 using namespace std;
-using namespace nbt;
+//using namespace nbt;
 
 #define DEFAULT_WORLD_DIRECTORY "MCParseTest"
 
@@ -20,25 +22,26 @@ int main(int numArgs, char **args)
 	levelString += DEFAULT_WORLD_DIRECTORY;
 	levelString += "\\level.dat";
 
-	try
-	{
-		nbt::NbtFile nbtFile;
-		nbtFile.open(levelString, "rb");
-		nbtFile.read();
-		Tag *rootTag = nbtFile.getRoot();
-		cout << rootTag->toString() << endl;
-	}
-	catch (GzipIOException &exception)
-	{
-		cout << "Failed to open NBT file.  Error: " << exception.what() << endl;
-	}
+	//try
+	//{
+	//	nbt::NbtFile nbtFile;
+	//	nbtFile.open(levelString, "rb");
+	//	nbtFile.read();
+	//	Tag *rootTag = nbtFile.getRoot();
+	//	cout << rootTag->toString() << endl;
+	//	nbtFile.close();
+	//}
+	//catch (GzipIOException &exception)
+	//{
+	//	cout << "Failed to open NBT file.  Error: " << exception.what() << endl;
+	//}
 
-    {
-        string testMcaString("");
-        testMcaString += DEFAULT_WORLD_DIRECTORY;
-        testMcaString += "\\region\\r.0.0.mca";
-        Region region(testMcaString);
-    }
+    //{
+    //    string testMcaString("");
+    //    testMcaString += DEFAULT_WORLD_DIRECTORY;
+    //    testMcaString += "\\region\\r.0.0.mca";
+    //    Region region(testMcaString);
+    //}
 
     //{
     //    string testMcaString("");
@@ -46,6 +49,9 @@ int main(int numArgs, char **args)
     //    testMcaString += "\\region\\r.-1.0.mca";
     //    Region region(testMcaString);
     //}
+
+	GLContext context = GLContext();
+	context.create();
 
     return 0;
 }

@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8392801C-028D-4B50-850E-7FBAC410D26C}</ProjectGuid>
+    <ProjectGuid>{FA294CFD-B6AC-4A9E-B3A1-1747A48402B1}</ProjectGuid>
     <RootNamespace>MCParse</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -88,6 +88,11 @@
     <ClInclude Include="cppNBT\src\cppnbt.h" />
     <ClInclude Include="minecraft_def.h" />
     <ClInclude Include="Region.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="opengl\opengl.vcxproj">
+      <Project>{88166f48-f9f5-45c6-a167-cd41db26060e}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

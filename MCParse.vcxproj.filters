@@ -1,23 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="cppNBT">
-      <UniqueIdentifier>{0af6d890-ef87-47ff-a9ed-13d1d5a2aa6b}</UniqueIdentifier>
+      <UniqueIdentifier>{2944aa5d-b262-40af-bee0-d835e3f59009}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GL">
-      <UniqueIdentifier>{a46fc7a8-a56f-4dd2-9262-7e10b4c26ae7}</UniqueIdentifier>
+    <Filter Include="minecraft">
+      <UniqueIdentifier>{6ad95f99-ee59-4986-a7cc-b1be87437d3b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Minecraft Stuff">
-      <UniqueIdentifier>{812e1140-8825-4750-ae56-81c12594df77}</UniqueIdentifier>
+    <Filter Include="Source">
+      <UniqueIdentifier>{ae2dbe95-fdfb-4591-ac33-eab4431b345a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="cppNBT\src\nbtbuffer.cc">
+      <Filter>cppNBT</Filter>
     </ClCompile>
     <ClCompile Include="cppNBT\src\nbtfile.cc">
       <Filter>cppNBT</Filter>
@@ -46,6 +49,9 @@
     <ClCompile Include="cppNBT\src\tag_int.cc">
       <Filter>cppNBT</Filter>
     </ClCompile>
+    <ClCompile Include="cppNBT\src\tag_int_array.cc">
+      <Filter>cppNBT</Filter>
+    </ClCompile>
     <ClCompile Include="cppNBT\src\tag_list.cc">
       <Filter>cppNBT</Filter>
     </ClCompile>
@@ -61,31 +67,25 @@
     <ClCompile Include="cppNBT\src\util.cc">
       <Filter>cppNBT</Filter>
     </ClCompile>
-    <ClCompile Include="cppNBT\src\nbtbuffer.cc">
-      <Filter>cppNBT</Filter>
-    </ClCompile>
-    <ClCompile Include="cppNBT\src\tag_int_array.cc">
-      <Filter>cppNBT</Filter>
-    </ClCompile>
     <ClCompile Include="Chunk.cpp">
-      <Filter>Minecraft Stuff</Filter>
+      <Filter>minecraft</Filter>
     </ClCompile>
     <ClCompile Include="Region.cpp">
-      <Filter>Minecraft Stuff</Filter>
+      <Filter>minecraft</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="minecraft_def.h">
+      <Filter>minecraft</Filter>
+    </ClInclude>
     <ClInclude Include="cppNBT\src\cppnbt.h">
       <Filter>cppNBT</Filter>
     </ClInclude>
     <ClInclude Include="Chunk.h">
-      <Filter>Minecraft Stuff</Filter>
+      <Filter>minecraft</Filter>
     </ClInclude>
     <ClInclude Include="Region.h">
-      <Filter>Minecraft Stuff</Filter>
-    </ClInclude>
-    <ClInclude Include="minecraft_def.h">
-      <Filter>Minecraft Stuff</Filter>
+      <Filter>minecraft</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

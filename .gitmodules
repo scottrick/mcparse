@@ -1,3 +1,6 @@
 [submodule "cppNBT"]
 	path = cppNBT
 	url = git@github.com:scottrick/cppNBT.git
+[submodule "opengl"]
+	path = opengl
+	url = https://github.com/scottrick/opengl.git
