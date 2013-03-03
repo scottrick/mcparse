@@ -73,6 +73,9 @@
     <ClCompile Include="Region.cpp">
       <Filter>minecraft</Filter>
     </ClCompile>
+    <ClCompile Include="MCScene.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="minecraft_def.h">
@@ -86,6 +89,9 @@
     </ClInclude>
     <ClInclude Include="Region.h">
       <Filter>minecraft</Filter>
+    </ClInclude>
+    <ClInclude Include="MCScene.h">
+      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
