@@ -95,6 +95,9 @@
     <ProjectReference Include="opengl\opengl.vcxproj">
       <Project>{88166f48-f9f5-45c6-a167-cd41db26060e}</Project>
     </ProjectReference>
+    <ProjectReference Include="scottbase\scottbase.vcxproj">
+      <Project>{e1395bbd-777c-4a58-a0f1-9f1407655218}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

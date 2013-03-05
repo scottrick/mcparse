@@ -4,3 +4,6 @@
 [submodule "opengl"]
 	path = opengl
 	url = https://github.com/scottrick/opengl.git
+[submodule "scottbase"]
+	path = scottbase
+	url = https://github.com/scottrick/scottbase.git

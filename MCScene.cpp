@@ -24,3 +24,7 @@ void MCScene::prepareRender() {
 void MCScene::render() {
 
 }
+
+const char *MCScene::GetClassName() const { 
+    return "MCScene";
+}

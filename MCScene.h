@@ -15,5 +15,9 @@ public:
 	//rendering
 	void prepareRender();
 	void render();
+
+    //from Unknown
+    virtual const char *GetClassName() const;
+
 };
 
