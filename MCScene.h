@@ -6,7 +6,6 @@ class MCScene : public GLScene
 {
 public:
 	MCScene();
-	~MCScene();
 
 	//creation and deletion of this scene
 	void create();
@@ -18,6 +17,9 @@ public:
 
     //from Unknown
     virtual const char *GetClassName() const;
+
+protected:
+	~MCScene();
 
 };
 

@@ -1,16 +1,18 @@
+#pragma once
+
+#include "scottbase/Unknown.h"
+
 #include <iostream>
 #include <list>
 using namespace std;
 
 class Chunk;
 
-class Region
+class Region : public Unknown
 {
 public:
     Region(const string &fileName);
     Region(const Region &region);
-
-    virtual ~Region();
 
     unsigned char *getData() const                          { return data; }
     string getFileName() const                              { return fileName; }
@@ -18,7 +20,12 @@ public:
     void open(); //open the region file and keep the data in memory
     void close(); //remove the region file from memory
 
+    //unknown
+    const char *GetClassName() const;
+
 protected:
+    ~Region();
+
     void setData(unsigned char *newData);
 
 private:

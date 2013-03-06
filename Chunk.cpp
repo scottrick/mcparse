@@ -51,3 +51,7 @@ void Chunk::setRegion(const Region *region)
 {
     m_pRegion = region;
 }
+
+const char *Chunk::GetClassName() const {
+    return "Chunk";
+}

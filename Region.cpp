@@ -36,7 +36,7 @@ void Region::close()
     while (iter != m_ChunkList.end())
     {
         pChunk = *iter;
-        delete pChunk;
+        pChunk->Release();
 
         iter++;
     }
@@ -99,4 +99,8 @@ void Region::setData(unsigned char *newData)
             data = newData;
         }
     }
+}
+
+const char *Region::GetClassName() const {
+    return "Region";
 }

@@ -1,21 +1,26 @@
+#pragma once
+
 #include "minecraft_def.h"
 
 #include "cppNBT\src\cppnbt.h"
+#include "scottbase/Unknown.h"
 
 class Region;
 
-class Chunk
+class Chunk : public Unknown
 {
 public:
     Chunk(const Region *region, const ChunkLocation *chunkLocation); //constructor!
     Chunk(const Chunk &chunk); //copy
 
-    ~Chunk();
-
     const Region                *getRegion() const                                  { return m_pRegion; }
     const ChunkLocation         *getChunkLocation() const                           { return m_pChunkLocation; }
 
+    //unknown
+    const char *GetClassName() const;
+
 protected:
+    ~Chunk();
 
     void                        setRegion(const Region *region);
     void                        setChunkLocation(const ChunkLocation *location);

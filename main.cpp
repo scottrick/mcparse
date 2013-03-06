@@ -37,23 +37,29 @@ int main(int numArgs, char **args)
 		cout << "Failed to open NBT file.  Error: " << exception.what() << endl;
 	}
 
-    {
-        string testMcaString("");
-        testMcaString += DEFAULT_WORLD_DIRECTORY;
-        testMcaString += "\\region\\r.0.0.mca";
-        Region region(testMcaString);
-    }
+    //{
+    //    string testMcaString("");
+    //    testMcaString += DEFAULT_WORLD_DIRECTORY;
+    //    testMcaString += "\\region\\r.0.0.mca";
+    //    Region *region = new Region(testMcaString);
+    //    region->Release();
+    //}
 
     //{
     //    string testMcaString("");
     //    testMcaString += DEFAULT_WORLD_DIRECTORY;
     //    testMcaString += "\\region\\r.-1.0.mca";
-    //    Region region(testMcaString);
+    //    Region *region = new Region(testMcaString);
+    //    region->Release();
     //}
 
 	GLContext::create(numArgs, args, 0, 800, 600);
-	GLContext::setScene(new MCScene());
+
+    MCScene *scene = new MCScene();
+	GLContext::setScene(scene);
 	GLContext::go();
+
+    scene->Release();
 
     return 0;
 }

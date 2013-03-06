@@ -1,5 +1,4 @@
-#ifndef MINECRAFT_DEF_H
-#define MINECRAFT_DEF_H
+#pragma once
 
 #include <cassert>
 #include <iostream>
@@ -74,5 +73,3 @@ typedef struct RegionHeader
     }
     
 } RegionHeader;
-
-#endif
