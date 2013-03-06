@@ -1,30 +1,23 @@
 #include "MCScene.h"
 
+#include "opengl/GLColoredGeometry.h"
 
-MCScene::MCScene(void) {
-	create();
-}
-
-MCScene::~MCScene(void) {
-	destroy();
-}
-
-void MCScene::create() {
+MCScene::MCScene() 
+{
 
 }
 
-void MCScene::destroy() {
+MCScene::~MCScene() 
+{
 
 }
 
-void MCScene::prepareRender() {
+void MCScene::render() 
+{
 
 }
 
-void MCScene::render() {
-
-}
-
-const char *MCScene::GetClassName() const { 
+const char *MCScene::GetClassName() const 
+{ 
     return "MCScene";
 }

@@ -7,6 +7,7 @@
 #include "cppNBT\src\cppnbt.h"
 
 #include "opengl\GLContext.h"
+#include "opengl\GLCameraScene.h"
 #include "MCScene.h"
 #include "Region.h"
 
@@ -55,7 +56,7 @@ int main(int numArgs, char **args)
 
 	GLContext::create(numArgs, args, 0, 800, 600);
 
-    MCScene *scene = new MCScene();
+    GLScene *scene = new GLCameraScene();
 	GLContext::setScene(scene);
 	GLContext::go();
 
