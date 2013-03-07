@@ -10,7 +10,7 @@ public:
 	void render();
 
     //from Unknown
-    virtual const char *GetClassName() const;
+    virtual const char *getClassName() const;
 
 protected:
 	~MCScene();

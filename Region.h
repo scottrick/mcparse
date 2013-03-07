@@ -21,7 +21,7 @@ public:
     void close(); //remove the region file from memory
 
     //unknown
-    const char *GetClassName() const;
+    const char *getClassName() const;
 
 protected:
     ~Region();

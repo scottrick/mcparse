@@ -17,7 +17,7 @@ public:
     const ChunkLocation         *getChunkLocation() const                           { return m_pChunkLocation; }
 
     //unknown
-    const char *GetClassName() const;
+    const char                  *getClassName() const;
 
 protected:
     ~Chunk();

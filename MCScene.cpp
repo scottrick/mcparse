@@ -17,7 +17,7 @@ void MCScene::render()
 
 }
 
-const char *MCScene::GetClassName() const 
+const char *MCScene::getClassName() const 
 { 
     return "MCScene";
 }

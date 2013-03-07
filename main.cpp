@@ -60,7 +60,7 @@ int main(int numArgs, char **args)
 	GLContext::setScene(scene);
 	GLContext::go();
 
-    scene->Release();
+    scene->release();
 
     return 0;
 }
