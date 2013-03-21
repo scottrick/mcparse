@@ -48,7 +48,7 @@ typedef struct ChunkLocation
     }
 
     unsigned int getSize() const    { return data[3]; }
-    void dump() const               { cout << "ChunkLocation raw 0x" << hex << *((int *)data) << dec << ", offset " << this->getOffset() << ", size " << this->getSize(); }
+    void dump() const               { cout << "ChunkLocation raw 0x" << hex << *((int *)data) << dec << ", offset " << this->getOffset() << ", size " << this->getSize() << endl; }
     bool isValid() const            { return data[0] || data[1] || data[2] || data[3]; }
 
 } ChunkLocation;

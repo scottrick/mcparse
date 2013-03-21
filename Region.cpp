@@ -64,8 +64,6 @@ void Region::open()
         setData(newData);
         RegionHeader *regionHeader = (RegionHeader *)newData;
 
-        regionHeader->dump();
-
         //for (int i = 0; i < CHUNKS_PER_REGION; ++i)
         for (int i = 0; i < 8; ++i)
         {
@@ -82,6 +80,11 @@ void Region::open()
 	{
 		cout << "Failed to open file \"" << fileName.c_str() << "\"" << endl;
 	}
+}
+
+Chunk *Region::getFirstChunk() const 
+{
+	return *(m_ChunkList.begin());
 }
 
 void Region::setData(unsigned char *newData)

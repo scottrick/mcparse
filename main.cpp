@@ -9,6 +9,8 @@
 #include "opengl\GLContext.h"
 #include "opengl\GLCameraScene.h"
 #include "MCScene.h"
+#include "Chunk.h"
+#include "ChunkRenderable.h"
 #include "Region.h"
 
 using namespace std;
@@ -19,6 +21,7 @@ using namespace nbt;
 int main(int numArgs, char **args)
 {
 	cout << "MCParse\nWritten by Scott Atkins\nMarch 2012\n" << endl;
+	GLContext::create(numArgs, args, 0, 800, 600);
 
 	string levelString(""); 
 	levelString += DEFAULT_WORLD_DIRECTORY;
@@ -38,28 +41,22 @@ int main(int numArgs, char **args)
 		cout << "Failed to open NBT file.  Error: " << exception.what() << endl;
 	}
 
-    //{
-    //    string testMcaString("");
-    //    testMcaString += DEFAULT_WORLD_DIRECTORY;
-    //    testMcaString += "\\region\\r.0.0.mca";
-    //    Region *region = new Region(testMcaString);
-    //    region->Release();
-    //}
-
-    //{
-    //    string testMcaString("");
-    //    testMcaString += DEFAULT_WORLD_DIRECTORY;
-    //    testMcaString += "\\region\\r.-1.0.mca";
-    //    Region *region = new Region(testMcaString);
-    //    region->Release();
-    //}
-
-	GLContext::create(numArgs, args, 0, 800, 600);
+    string testMcaString("");
+    testMcaString += DEFAULT_WORLD_DIRECTORY;
+    testMcaString += "\\region\\r.0.0.mca";
+    Region *region = new Region(testMcaString);
 
     GLScene *scene = new GLCameraScene();
+
+	Chunk *pChunk = region->getFirstChunk();
+	pChunk->getChunkLocation()->dump();
+	ChunkRenderable *pChunkRenderable = new ChunkRenderable(pChunk);
+	scene->addRenderable(pChunkRenderable);
+
 	GLContext::setScene(scene);
 	GLContext::go();
 
+    region->release();
     scene->release();
 
     return 0;

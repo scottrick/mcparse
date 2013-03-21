@@ -24,6 +24,7 @@ Chunk::~Chunk()
 {
     setRegion(0);
     setChunkLocation(0);
+	delete m_pBuffer;
 }
 
 void Chunk::go()
@@ -31,15 +32,7 @@ void Chunk::go()
     unsigned char *dataStart = m_pRegion->getData() + (m_pChunkLocation->getOffset() * CHUNK_OFFSET_SIZE_IN_BYTES);
     ChunkHeader *header = (ChunkHeader *)dataStart;
 
-    nbt::NbtBuffer nbtBuffer(dataStart + sizeof(ChunkHeader), header->getChunkLength());
-
-    static bool debug = false;
-
-    if (debug)
-    { //print out one chunk for now :)
-        cout << nbtBuffer.getRoot()->toString() << endl;
-        debug = false;
-    }
+	m_pBuffer = new nbt::NbtBuffer(dataStart + sizeof(ChunkHeader), header->getChunkLength());
 }
 
 void Chunk::setChunkLocation(const ChunkLocation *location)
@@ -50,6 +43,16 @@ void Chunk::setChunkLocation(const ChunkLocation *location)
 void Chunk::setRegion(const Region *region)
 {
     m_pRegion = region;
+}
+
+nbt::NbtBuffer *Chunk::getBuffer() const
+{
+	return m_pBuffer;
+}
+
+void Chunk::dump() const 
+{
+	cout << m_pBuffer->getRoot()->toString() << endl;
 }
 
 const char *Chunk::getClassName() const {

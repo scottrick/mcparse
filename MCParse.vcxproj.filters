@@ -14,6 +14,9 @@
     <Filter Include="Source">
       <UniqueIdentifier>{ae2dbe95-fdfb-4591-ac33-eab4431b345a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="opengl">
+      <UniqueIdentifier>{dedd0aab-7d99-4813-8488-08a644fcf260}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -76,6 +79,9 @@
     <ClCompile Include="MCScene.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="ChunkRenderable.cpp">
+      <Filter>opengl</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="minecraft_def.h">
@@ -92,6 +98,9 @@
     </ClInclude>
     <ClInclude Include="MCScene.h">
       <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="ChunkRenderable.h">
+      <Filter>opengl</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

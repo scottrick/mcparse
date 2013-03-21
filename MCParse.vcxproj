@@ -64,6 +64,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Chunk.cpp" />
+    <ClCompile Include="ChunkRenderable.cpp" />
     <ClCompile Include="cppNBT\src\nbtbuffer.cc" />
     <ClCompile Include="cppNBT\src\nbtfile.cc" />
     <ClCompile Include="cppNBT\src\tag.cc" />
@@ -86,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chunk.h" />
+    <ClInclude Include="ChunkRenderable.h" />
     <ClInclude Include="cppNBT\src\cppnbt.h" />
     <ClInclude Include="MCScene.h" />
     <ClInclude Include="minecraft_def.h" />

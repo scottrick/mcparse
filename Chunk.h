@@ -14,7 +14,11 @@ public:
     Chunk(const Chunk &chunk); //copy
 
     const Region                *getRegion() const                                  { return m_pRegion; }
-    const ChunkLocation         *getChunkLocation() const                           { return m_pChunkLocation; }
+    const ChunkLocation			*getChunkLocation() const                           { return m_pChunkLocation; }
+
+	nbt::NbtBuffer				*getBuffer() const;
+
+	void						dump() const;
 
     //unknown
     const char                  *getClassName() const;
@@ -28,6 +32,8 @@ protected:
 private:
     const Region                *m_pRegion;
     const ChunkLocation         *m_pChunkLocation;
+
+	nbt::NbtBuffer				*m_pBuffer;
 
     void go();
 };
