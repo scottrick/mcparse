@@ -17,34 +17,6 @@ ChunkRenderable::ChunkRenderable(Chunk *pNewChunk)
 	: pChunk(0)
 {
 	setChunk(pNewChunk);
-
-	//pNewChunk->dump();
-
-	//nbt::NbtBuffer *pBuffer = pChunk->getBuffer();
-	
-	//nbt::TagCompound *root = (nbt::TagCompound *)pBuffer->getRoot();
-	//nbt::TagCompound *level = (nbt::TagCompound *)root->getValueAt("Level");
-	//nbt::TagList *sections = (nbt::TagList *)level->getValueAt("Sections");
-
-	//cout << "Sections" << endl << sections->toString() << endl;
-
-	//ChunkSection *pSection = pChunk->getSection(5);
-	//pSection->dump();
-	//unsigned char a = pSection->getBlockIdAt(1, 2, 3);
-	//unsigned char b = pSection->getBlockIdAt(3, 2, 1);
-	//cout << "blocks!   " << (unsigned int)a << ", " << (unsigned int)b << endl;
-
-	//cout << endl << endl;
-	//for (unsigned int i = 0; i < CHUNK_HEIGHT; ++i)
-	//{
-	//	cout << pChunk->getBlockIdAt(0, i, 0) << endl;
-	//}
-
-
-	//just get the top section blocks for now
-	//nbt::TagCompound *topSection = (nbt::TagCompound *)sections->back();
-	//nbt::TagByteArray *blocks = (nbt::TagByteArray *)topSection->getValueAt("Blocks");
-
 	makeBuffers();
 }
 
@@ -96,8 +68,6 @@ void ChunkRenderable::makeBuffers()
 
 			for (unsigned int y = 0; y < CHUNK_HEIGHT; ++y)
 			{
-				//cout << "checking (" << x << ", " << y << ", " << z << ")" << endl;
-
 				unsigned int blockId = pChunk->getBlockIdAt(x, y, z);
 
 				if (!blockId) 
@@ -207,8 +177,6 @@ void ChunkRenderable::makeBuffers()
 					pElementData[numElements + 5] = vertexStart + 2;
 					numElements += 6;
 				}
-
-				//cout << blockId << ": " << top << ", " << bottom << ", " << xPlus << ", " << xMinus << ", " << zPlus << ", " << zMinus << endl;
 			}
 		}
 	}
