@@ -59,7 +59,7 @@ void Chunk::setRegion(const Region *region)
 
 unsigned int Chunk::getBlockIdAt(unsigned int x, unsigned int y, unsigned int z) const
 {
-	unsigned int sectionY = y / CHUNK_WIDTH;
+	unsigned int sectionY = y / SECTION_HEIGHT;
 	ChunkSection *pSection = getSection(sectionY);
 
 	if (pSection)

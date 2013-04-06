@@ -48,8 +48,8 @@ void ChunkRenderable::makeBuffers()
 {
     shaderProgram = GLShaderManager::Manager()->getShaderProgram("shaders/BasicChunk");
 
-	GLfloat *pVertexData = new GLfloat[4096 * 24];
-	GLuint *pElementData = new GLuint[4096 * 6];
+	GLfloat *pVertexData = new GLfloat[4096 * 24 * 4];
+	GLuint *pElementData = new GLuint[4096 * 6 * 4];
 
     //setup the vertex and element index buffers
     glGenBuffers(1, &vbo);
@@ -60,11 +60,11 @@ void ChunkRenderable::makeBuffers()
 	
 	for (unsigned int x = 0; x < CHUNK_WIDTH; ++x)
 	{
-		for (unsigned int z = 0; z < 1; ++z)
+		for (unsigned int z = 0; z < CHUNK_WIDTH; ++z)
 		{
 			unsigned int progress = x * CHUNK_WIDTH + z;
 			GLfloat percent = (GLfloat)progress / 255.0f * 100.0f;
-			cout << percent << "%" << endl;
+			cout << percent << "%:  " << vertexIndex << ", " << numElements << endl;
 
 			for (unsigned int y = 0; y < CHUNK_HEIGHT; ++y)
 			{
@@ -72,7 +72,7 @@ void ChunkRenderable::makeBuffers()
 
 				if (!blockId) 
 				{ //AIR block, so do nothing
-					break;
+					continue;
 				}
 
 				//get the 6 adjacent blocks
@@ -130,7 +130,182 @@ void ChunkRenderable::makeBuffers()
 
 				if (!top)
 				{ //add top triangles
+					unsigned int vertexStart = vertexIndex / 6;
 
+					pVertexData[vertexIndex + 0] = (GLfloat)x;
+					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
+					pVertexData[vertexIndex + 2] = (GLfloat)z;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x;
+					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
+					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
+					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
+					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
+					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
+					pVertexData[vertexIndex + 2] = (GLfloat)z;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pElementData[numElements + 0] = vertexStart + 3;
+					pElementData[numElements + 1] = vertexStart + 0;
+					pElementData[numElements + 2] = vertexStart + 1;
+					pElementData[numElements + 3] = vertexStart + 3;
+					pElementData[numElements + 4] = vertexStart + 1;
+					pElementData[numElements + 5] = vertexStart + 2;
+					numElements += 6;
+				}
+
+				if (!bottom)
+				{ //add bottom triangles
+					unsigned int vertexStart = vertexIndex / 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x;
+					pVertexData[vertexIndex + 1] = (GLfloat)y;
+					pVertexData[vertexIndex + 2] = (GLfloat)z;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x;
+					pVertexData[vertexIndex + 1] = (GLfloat)y;
+					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
+					pVertexData[vertexIndex + 1] = (GLfloat)y;
+					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
+					pVertexData[vertexIndex + 1] = (GLfloat)y;
+					pVertexData[vertexIndex + 2] = (GLfloat)z;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pElementData[numElements + 0] = vertexStart + 2;
+					pElementData[numElements + 1] = vertexStart + 1;
+					pElementData[numElements + 2] = vertexStart + 0;
+					pElementData[numElements + 3] = vertexStart + 3;
+					pElementData[numElements + 4] = vertexStart + 2;
+					pElementData[numElements + 5] = vertexStart + 0;
+					numElements += 6;
+				}
+
+				if (!xMinus)
+				{ //add xMinus triangles
+					unsigned int vertexStart = vertexIndex / 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x;
+					pVertexData[vertexIndex + 1] = (GLfloat)y;
+					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x;
+					pVertexData[vertexIndex + 1] = (GLfloat)y;
+					pVertexData[vertexIndex + 2] = (GLfloat)z;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x;
+					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
+					pVertexData[vertexIndex + 2] = (GLfloat)z;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x;
+					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
+					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pElementData[numElements + 0] = vertexStart + 1;
+					pElementData[numElements + 1] = vertexStart + 0;
+					pElementData[numElements + 2] = vertexStart + 3;
+					pElementData[numElements + 3] = vertexStart + 3;
+					pElementData[numElements + 4] = vertexStart + 2;
+					pElementData[numElements + 5] = vertexStart + 1;
+					numElements += 6;
+				}
+
+				if (!xPlus)
+				{ //add xPlus triangles
+					unsigned int vertexStart = vertexIndex / 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
+					pVertexData[vertexIndex + 1] = (GLfloat)y;
+					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
+					pVertexData[vertexIndex + 1] = (GLfloat)y;
+					pVertexData[vertexIndex + 2] = (GLfloat)z;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
+					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
+					pVertexData[vertexIndex + 2] = (GLfloat)z;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
+					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
+					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pElementData[numElements + 0] = vertexStart + 1;
+					pElementData[numElements + 1] = vertexStart + 3;
+					pElementData[numElements + 2] = vertexStart + 0;
+					pElementData[numElements + 3] = vertexStart + 1;
+					pElementData[numElements + 4] = vertexStart + 2;
+					pElementData[numElements + 5] = vertexStart + 3;
+					numElements += 6;
 				}
 
 				if (!zMinus)
@@ -175,6 +350,51 @@ void ChunkRenderable::makeBuffers()
 					pElementData[numElements + 3] = vertexStart + 0;
 					pElementData[numElements + 4] = vertexStart + 3;
 					pElementData[numElements + 5] = vertexStart + 2;
+					numElements += 6;
+				}
+
+				if (!zPlus)
+				{ //add zPlus triangles
+					unsigned int vertexStart = vertexIndex / 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x;
+					pVertexData[vertexIndex + 1] = (GLfloat)y;
+					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
+					pVertexData[vertexIndex + 1] = (GLfloat)y;
+					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
+					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
+					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pVertexData[vertexIndex + 0] = (GLfloat)x;
+					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
+					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
+					pVertexData[vertexIndex + 3] = r; //r
+					pVertexData[vertexIndex + 4] = g; //g
+					pVertexData[vertexIndex + 5] = b; //b
+					vertexIndex += 6;
+
+					pElementData[numElements + 0] = vertexStart + 0;
+					pElementData[numElements + 1] = vertexStart + 1;
+					pElementData[numElements + 2] = vertexStart + 2;
+					pElementData[numElements + 3] = vertexStart + 0;
+					pElementData[numElements + 4] = vertexStart + 2;
+					pElementData[numElements + 5] = vertexStart + 3;
 					numElements += 6;
 				}
 			}

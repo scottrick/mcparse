@@ -11,6 +11,7 @@ using namespace std;
 class ChunkSection;
 class Region;
 
+#define SECTION_HEIGHT 16
 #define CHUNK_WIDTH 16
 #define CHUNK_HEIGHT 256
 
