@@ -32,7 +32,7 @@ unsigned int ChunkSection::getBlockIdAt(unsigned int x, unsigned int y, unsigned
 	int blockPosition = y * CHUNK_HEIGHT + z * CHUNK_WIDTH + x;
 
 	nbt::TagByteArray *blocks = (nbt::TagByteArray *)m_pSection->getValueAt("Blocks");
-	unsigned char blockId = blocks->getValue().at(blockPosition);
+	unsigned char blockId = blocks->getValues()[blockPosition];
 
 	return blockId;
 }
