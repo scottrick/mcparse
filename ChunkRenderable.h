@@ -26,6 +26,9 @@ protected:
 
 	Chunk *pChunk;
 
+	//rendering for rendering
+	GLuint numElements;
+
 	GLuint shaderProgram;
 
     GLuint vbo;

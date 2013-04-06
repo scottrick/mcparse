@@ -5,7 +5,14 @@
 #include "cppNBT\src\cppnbt.h"
 #include "scottbase/Unknown.h"
 
+#include <vector>
+using namespace std;
+
+class ChunkSection;
 class Region;
+
+#define CHUNK_WIDTH 16
+#define CHUNK_HEIGHT 256
 
 class Chunk : public Unknown
 {
@@ -16,7 +23,9 @@ public:
     const Region                *getRegion() const                                  { return m_pRegion; }
     const ChunkLocation			*getChunkLocation() const                           { return m_pChunkLocation; }
 
+	unsigned int				getBlockIdAt(unsigned int x, unsigned int y, unsigned int z) const;
 	nbt::NbtBuffer				*getBuffer() const;
+	ChunkSection				*getSection(unsigned int sectionY) const;
 
 	void						dump() const;
 
@@ -34,6 +43,8 @@ private:
     const ChunkLocation         *m_pChunkLocation;
 
 	nbt::NbtBuffer				*m_pBuffer;
+
+	vector<ChunkSection *>		m_Sections;
 
     void go();
 };

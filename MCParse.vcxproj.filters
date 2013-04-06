@@ -82,6 +82,9 @@
     <ClCompile Include="ChunkRenderable.cpp">
       <Filter>opengl</Filter>
     </ClCompile>
+    <ClCompile Include="ChunkSection.cpp">
+      <Filter>minecraft</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="minecraft_def.h">
@@ -101,6 +104,9 @@
     </ClInclude>
     <ClInclude Include="ChunkRenderable.h">
       <Filter>opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="ChunkSection.h">
+      <Filter>minecraft</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
