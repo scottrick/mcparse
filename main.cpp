@@ -48,10 +48,16 @@ int main(int numArgs, char **args)
 
     GLScene *scene = new GLCameraScene();
 
-	Chunk *pChunk = region->getFirstChunk();
-	pChunk->getChunkLocation()->dump();
-	ChunkRenderable *pChunkRenderable = new ChunkRenderable(pChunk);
-	scene->addRenderable(pChunkRenderable);
+	const list<Chunk *> chunks = region->getChunks();
+	list<Chunk *>::const_iterator iter;
+
+	for (iter = chunks.begin(); iter != chunks.end(); iter++)
+	{
+		Chunk *pChunk = *iter;
+		ChunkRenderable *pChunkRenderable = new ChunkRenderable(pChunk);
+		scene->addRenderable(pChunkRenderable);
+		pChunkRenderable->release();
+	}
 
 	GLContext::setScene(scene);
 	GLContext::go();

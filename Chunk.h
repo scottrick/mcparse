@@ -23,6 +23,8 @@ public:
 
     const Region                *getRegion() const                                  { return m_pRegion; }
     const ChunkLocation			*getChunkLocation() const                           { return m_pChunkLocation; }
+	const unsigned int			getChunkX() const									{ return m_ChunkX; }
+	const unsigned int			getChunkZ() const									{ return m_ChunkZ; }
 
 	inline unsigned int	getBlockIdAt(unsigned int x, unsigned int y, unsigned int z) const
 	{
@@ -48,6 +50,8 @@ private:
     const Region                *m_pRegion;
     const ChunkLocation         *m_pChunkLocation;
 
+	unsigned int				m_ChunkX;
+	unsigned int				m_ChunkZ;
 	unsigned char				m_Blocks[CHUNK_WIDTH * CHUNK_WIDTH * CHUNK_HEIGHT];
 
     void go();

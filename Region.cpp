@@ -64,8 +64,7 @@ void Region::open()
         setData(newData);
         RegionHeader *regionHeader = (RegionHeader *)newData;
 
-        //for (int i = 0; i < CHUNKS_PER_REGION; ++i)
-        for (int i = 0; i < 8; ++i)
+        for (int i = 0; i < CHUNKS_PER_REGION; ++i)
         {
             if (regionHeader->locations[i].isValid())
             {
@@ -82,9 +81,9 @@ void Region::open()
 	}
 }
 
-Chunk *Region::getFirstChunk() const 
+const list<Chunk *> &Region::getChunks() const
 {
-	return *(m_ChunkList.begin());
+	return m_ChunkList;
 }
 
 void Region::setData(unsigned char *newData)

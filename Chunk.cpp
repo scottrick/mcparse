@@ -37,6 +37,11 @@ void Chunk::go()
 	nbt::TagCompound *level = (nbt::TagCompound *)root->getValueAt("Level");
 	nbt::TagList *sections = (nbt::TagList *)level->getValueAt("Sections");
 
+	nbt::TagInt *xPos = (nbt::TagInt *)level->getValueAt("xPos");
+	nbt::TagInt *zPos = (nbt::TagInt *)level->getValueAt("zPos");
+	m_ChunkX = xPos->getValue();
+	m_ChunkZ = zPos->getValue();
+
 	//fill our blocks byte array
 	memset(m_Blocks, 0, CHUNK_WIDTH * CHUNK_WIDTH * CHUNK_HEIGHT);
 	for (size_t i = 0; i < sections->size(); ++i)

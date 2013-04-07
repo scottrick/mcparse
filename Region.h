@@ -20,7 +20,7 @@ public:
     void open(); //open the region file and keep the data in memory
     void close(); //remove the region file from memory
 
-	Chunk *getFirstChunk() const; //easy getter for now
+	const list<Chunk *> &getChunks() const;
 
     //unknown
     const char *getClassName() const;

@@ -12,6 +12,7 @@ public:
 
 	//renderable
 	void render() const;
+	const glm::mat4 &getModelMatrix() const;
     GLuint getShaderProgram() const;
 
     //unknown
@@ -33,6 +34,8 @@ protected:
 
     GLuint vbo;
     GLuint ebo;
+
+	glm::mat4 model;
 
 };
 

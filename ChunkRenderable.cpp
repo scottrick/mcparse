@@ -12,7 +12,7 @@
 using namespace std;
 
 ChunkRenderable::ChunkRenderable(Chunk *pNewChunk)
-	: pChunk(0)
+	: pChunk(0), model(glm::mat4())
 {
 	setChunk(pNewChunk);
 	makeBuffers();
@@ -45,6 +45,8 @@ void ChunkRenderable::setChunk(Chunk *pNewChunk)
 void ChunkRenderable::makeBuffers()
 {
     shaderProgram = GLShaderManager::Manager()->getShaderProgram("shaders/BasicChunk");
+
+	model = glm::translate(glm::mat4(), glm::vec3((GLfloat)(pChunk->getChunkX() * CHUNK_WIDTH), 0.0f, (GLfloat)(pChunk->getChunkZ() * CHUNK_WIDTH)));
 
 	GLfloat *pVertexData = new GLfloat[4096 * 24 * 4];
 	GLuint *pElementData = new GLuint[4096 * 6 * 4];
@@ -90,6 +92,12 @@ void ChunkRenderable::makeBuffers()
 					r = 0.5f;
 					g = 0.5f;
 					b = 0.5f;
+				}
+				else if (blockId == 8 || blockId == 9) 
+				{ //water
+					r = 0.0f;
+					g = 0.0f;
+					b = 0.6f;
 				}
 				else if (blockId == 2) 
 				{ //grass
@@ -413,6 +421,11 @@ void ChunkRenderable::destroyBuffers()
 	glDeleteBuffers(1, &ebo);
 }
 
+const glm::mat4 &ChunkRenderable::getModelMatrix() const
+{
+	return model;
+}
+
 GLuint ChunkRenderable::getShaderProgram() const 
 {
     return shaderProgram;
@@ -431,9 +444,8 @@ void ChunkRenderable::render() const
     glEnableVertexAttribArray(colorAttrib);
     glVertexAttribPointer(colorAttrib, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void *) (3 * sizeof(GLfloat)));
 
-    GLuint modelTransformUniform = glGetUniformLocation(shaderProgram, "model");
-    glm::mat4 modelTransform = glm::mat4(); //identity model transformation for now
-    glUniformMatrix4fv(modelTransformUniform, 1, GL_FALSE, glm::value_ptr(modelTransform));
+	GLuint modelTransformUniform = glGetUniformLocation(shaderProgram, "model");
+	glUniformMatrix4fv(modelTransformUniform, 1, GL_FALSE, glm::value_ptr(model));
 
     glDrawElements(GL_TRIANGLES, numElements, GL_UNSIGNED_INT, 0);
 }
