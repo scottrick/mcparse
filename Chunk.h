@@ -24,13 +24,18 @@ public:
     const Region                *getRegion() const                                  { return m_pRegion; }
     const ChunkLocation			*getChunkLocation() const                           { return m_pChunkLocation; }
 
-	unsigned int				getBlockIdAt(unsigned int x, unsigned int y, unsigned int z) const;
-	nbt::NbtBuffer				*getBuffer() const;
-	ChunkSection				*getSection(unsigned int sectionY) const;
+	inline unsigned int	getBlockIdAt(unsigned int x, unsigned int y, unsigned int z) const
+	{
+		if (x < 0 || x >= CHUNK_WIDTH || z < 0 || z >= CHUNK_WIDTH || y < 0 || y >= CHUNK_HEIGHT)
+		{ //not in this chunk, so return AIR for now
+			return 0;
+		}
 
-	void						dump() const;
+		unsigned int offset = y * CHUNK_HEIGHT + z * CHUNK_WIDTH + x;
+		return m_Blocks[offset];
+	}
 
-    //unknown
+	//unknown
     const char                  *getClassName() const;
 
 protected:
@@ -43,9 +48,7 @@ private:
     const Region                *m_pRegion;
     const ChunkLocation         *m_pChunkLocation;
 
-	nbt::NbtBuffer				*m_pBuffer;
-
-	vector<ChunkSection *>		m_Sections;
+	unsigned char				m_Blocks[CHUNK_WIDTH * CHUNK_WIDTH * CHUNK_HEIGHT];
 
     void go();
 };

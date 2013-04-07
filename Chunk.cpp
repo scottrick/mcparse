@@ -1,7 +1,6 @@
 #include "Chunk.h"
 
 #include "minecraft_def.h"
-#include "ChunkSection.h"
 #include "Region.h"
 #include "cppNBT\src\cppnbt.h"
 
@@ -25,7 +24,6 @@ Chunk::~Chunk()
 {
     setRegion(0);
     setChunkLocation(0);
-	delete m_pBuffer;
 }
 
 void Chunk::go()
@@ -33,18 +31,27 @@ void Chunk::go()
     unsigned char *dataStart = m_pRegion->getData() + (m_pChunkLocation->getOffset() * CHUNK_OFFSET_SIZE_IN_BYTES);
     ChunkHeader *header = (ChunkHeader *)dataStart;
 
-	m_pBuffer = new nbt::NbtBuffer(dataStart + sizeof(ChunkHeader), header->getChunkLength());
+	nbt::NbtBuffer *pBuffer = new nbt::NbtBuffer(dataStart + sizeof(ChunkHeader), header->getChunkLength());
 
-	nbt::TagCompound *root = (nbt::TagCompound *)m_pBuffer->getRoot();
+	nbt::TagCompound *root = (nbt::TagCompound *)pBuffer->getRoot();
 	nbt::TagCompound *level = (nbt::TagCompound *)root->getValueAt("Level");
 	nbt::TagList *sections = (nbt::TagList *)level->getValueAt("Sections");
 
+	//fill our blocks byte array
+	memset(m_Blocks, 0, CHUNK_WIDTH * CHUNK_WIDTH * CHUNK_HEIGHT);
 	for (size_t i = 0; i < sections->size(); ++i)
 	{
 		nbt::TagCompound *section = (nbt::TagCompound *)sections->at(i);
-		ChunkSection *pSection = new ChunkSection(section);
-		m_Sections.push_back(pSection);
+		nbt::TagByte *tag = (nbt::TagByte *)section->getValueAt("Y");
+		unsigned int sectionY = tag->getValue();
+
+		nbt::TagByteArray *blocks = (nbt::TagByteArray *)section->getValueAt("Blocks");
+
+		memcpy(m_Blocks + sectionY * CHUNK_WIDTH * CHUNK_WIDTH * SECTION_HEIGHT, blocks->getValues(), blocks->getSize());
 	}
+
+	//all done reading in the chunk, so delete the NBT buffer
+	delete pBuffer;
 }
 
 void Chunk::setChunkLocation(const ChunkLocation *location)
@@ -55,43 +62,6 @@ void Chunk::setChunkLocation(const ChunkLocation *location)
 void Chunk::setRegion(const Region *region)
 {
     m_pRegion = region;
-}
-
-unsigned int Chunk::getBlockIdAt(unsigned int x, unsigned int y, unsigned int z) const
-{
-	unsigned int sectionY = y / SECTION_HEIGHT;
-	ChunkSection *pSection = getSection(sectionY);
-
-	if (pSection)
-	{
-		return pSection->getBlockIdAt(x, y % CHUNK_WIDTH, z);
-	}
-
-	return 0; //no section, so return 0 for AIR
-}
-
-nbt::NbtBuffer *Chunk::getBuffer() const
-{
-	return m_pBuffer;
-}
-
-ChunkSection *Chunk::getSection(unsigned int sectionY) const
-{
-	vector<ChunkSection *>::const_iterator iter;
-	for (iter = m_Sections.begin(); iter != m_Sections.end(); iter++)
-	{
-		if ((*iter)->getSectionY() == sectionY) 
-		{
-			return *iter;
-		}
-	}
-
-	return 0;
-}
-
-void Chunk::dump() const 
-{
-	cout << m_pBuffer->getRoot()->toString() << endl;
 }
 
 const char *Chunk::getClassName() const {

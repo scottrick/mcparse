@@ -1,10 +1,8 @@
 #include "ChunkRenderable.h"
 
 #include "Chunk.h"
-#include "ChunkSection.h"
 #include "cppNBT/src/cppnbt.h"
 #include "opengl/GLShaderManager.h"
-
 
 #include "opengl/glm/glm.hpp"
 #include "opengl/glm/gtc/matrix_transform.hpp"
@@ -62,10 +60,6 @@ void ChunkRenderable::makeBuffers()
 	{
 		for (unsigned int z = 0; z < CHUNK_WIDTH; ++z)
 		{
-			unsigned int progress = x * CHUNK_WIDTH + z;
-			GLfloat percent = (GLfloat)progress / 255.0f * 100.0f;
-			cout << percent << "%:  " << vertexIndex << ", " << numElements << endl;
-
 			for (unsigned int y = 0; y < CHUNK_HEIGHT; ++y)
 			{
 				unsigned int blockId = pChunk->getBlockIdAt(x, y, z);
