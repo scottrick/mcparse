@@ -41,28 +41,38 @@ int main(int numArgs, char **args)
 		cout << "Failed to open NBT file.  Error: " << exception.what() << endl;
 	}
 
-    string testMcaString("");
-    testMcaString += DEFAULT_WORLD_DIRECTORY;
-    testMcaString += "\\region\\r.0.0.mca";
-    Region *region = new Region(testMcaString);
+	GLScene *scene = new GLCameraScene();
 
-    GLScene *scene = new GLCameraScene();
+	vector<std::string> regionFiles;
+	//regionFiles.push_back("\\region\\r.0.0.mca");
+	regionFiles.push_back("\\region\\r.0.-1.mca");
 
-	const list<Chunk *> chunks = region->getChunks();
-	list<Chunk *>::const_iterator iter;
+	vector<std::string>::iterator iter;
 
-	for (iter = chunks.begin(); iter != chunks.end(); iter++)
+	for (iter = regionFiles.begin(); iter != regionFiles.end(); iter++)
 	{
-		Chunk *pChunk = *iter;
-		ChunkRenderable *pChunkRenderable = new ChunkRenderable(pChunk);
-		scene->addRenderable(pChunkRenderable);
-		pChunkRenderable->release();
+		string testMcaString("");
+		testMcaString += DEFAULT_WORLD_DIRECTORY;
+		testMcaString += *iter;
+		Region *region = new Region(testMcaString);
+
+		const list<Chunk *> chunks = region->getChunks();
+		list<Chunk *>::const_iterator iter;
+
+		for (iter = chunks.begin(); iter != chunks.end(); iter++)
+		{
+			Chunk *pChunk = *iter;
+			ChunkRenderable *pChunkRenderable = new ChunkRenderable(pChunk);
+			scene->addRenderable(pChunkRenderable);
+			pChunkRenderable->release();
+		}
+
+	    region->release();
 	}
 
 	GLContext::setScene(scene);
 	GLContext::go();
 
-    region->release();
     scene->release();
 
     return 0;
