@@ -473,6 +473,11 @@ GLuint ChunkRenderable::getShaderProgram() const
     return shaderProgram;
 }
 
+GLuint ChunkRenderable::getTriangleCount() const
+{
+	return numElements / 3;
+}
+
 void ChunkRenderable::render() const 
 {
     glBindBuffer(GL_ARRAY_BUFFER, vbo);

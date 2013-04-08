@@ -14,6 +14,7 @@ public:
 	void render() const;
 	const glm::mat4 &getModelMatrix() const;
     GLuint getShaderProgram() const;
+	GLuint getTriangleCount() const;
 
     //unknown
     const char *getClassName() const;
