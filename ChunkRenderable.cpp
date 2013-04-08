@@ -89,9 +89,39 @@ void ChunkRenderable::makeBuffers()
 				}
 				else if (blockId == 1) 
 				{ //stone
-					r = 0.5f;
-					g = 0.5f;
-					b = 0.5f;
+					r = 0.45f;
+					g = 0.45f;
+					b = 0.45f;
+				}
+				else if (blockId == 4) 
+				{ //cobblestone
+					r = 0.35f;
+					g = 0.35f;
+					b = 0.35f;
+				}
+				else if (blockId == 5) 
+				{ //wood plank
+					r = 0.34f;
+					g = 0.17f;
+					b = 0.07f;
+				}
+				else if (blockId == 17) 
+				{ //wood
+					r = 0.34f;
+					g = 0.17f;
+					b = 0.07f;
+				}
+				else if (blockId == 18) 
+				{ //leaves
+					r = 0.0f;
+					g = 0.4f;
+					b = 0.0f;
+				}
+				else if (blockId == 20) 
+				{ //glass
+					r = 1.0f;
+					g = 1.0f;
+					b = 1.0f;
 				}
 				else if (blockId == 8 || blockId == 9) 
 				{ //water
@@ -99,11 +129,23 @@ void ChunkRenderable::makeBuffers()
 					g = 0.0f;
 					b = 0.6f;
 				}
+				else if (blockId == 10 || blockId == 11) 
+				{ //lava
+					r = 1.0f;
+					g = 0.35f;
+					b = 0.0f;
+				}
 				else if (blockId == 2) 
 				{ //grass
 					r = 0.0f;
 					g = 0.6f;
 					b = 0.0f;
+				}
+				else if (blockId == 12) 
+				{ //sand
+					r = 0.86f;
+					g = 0.82f;
+					b = 0.67f;
 				}
 				else if (blockId == 3) 
 				{ //dirt

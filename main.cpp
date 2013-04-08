@@ -45,7 +45,7 @@ int main(int numArgs, char **args)
 
 	vector<std::string> regionFiles;
 	//regionFiles.push_back("\\region\\r.0.0.mca");
-	regionFiles.push_back("\\region\\r.0.-1.mca");
+	regionFiles.push_back("\\region\\oldserver.r.0.0.mca");
 
 	vector<std::string>::iterator iter;
 
