@@ -12,6 +12,7 @@
 #include "Chunk.h"
 #include "ChunkRenderable.h"
 #include "Region.h"
+#include "World.h"
 
 using namespace std;
 using namespace nbt;
@@ -41,11 +42,19 @@ int main(int numArgs, char **args)
 		cout << "Failed to open NBT file.  Error: " << exception.what() << endl;
 	}
 
+	World *world = new World();
 	GLScene *scene = new GLCameraScene();
 
 	vector<std::string> regionFiles;
 	//regionFiles.push_back("\\region\\r.0.0.mca");
+	//regionFiles.push_back("\\region\\r.-1.0.mca");
+	//regionFiles.push_back("\\region\\r.0.-1.mca");
+	//regionFiles.push_back("\\region\\r.-1.-1.mca");
 	regionFiles.push_back("\\region\\oldserver.r.0.0.mca");
+	//regionFiles.push_back("\\region\\oldserver.r.-1.0.mca");
+	//regionFiles.push_back("\\region\\oldserver.r.0.-1.mca");
+	//regionFiles.push_back("\\region\\oldserver.r.-1.-1.mca");
+	//regionFiles.push_back("\\region\\oldserver.r.0.-2.mca");
 
 	vector<std::string>::iterator iter;
 
@@ -54,26 +63,31 @@ int main(int numArgs, char **args)
 		string testMcaString("");
 		testMcaString += DEFAULT_WORLD_DIRECTORY;
 		testMcaString += *iter;
+
 		Region *region = new Region(testMcaString);
-
-		const list<Chunk *> chunks = region->getChunks();
-		list<Chunk *>::const_iterator iter;
-
-		for (iter = chunks.begin(); iter != chunks.end(); iter++)
-		{
-			Chunk *pChunk = *iter;
-			ChunkRenderable *pChunkRenderable = new ChunkRenderable(pChunk);
-			scene->addRenderable(pChunkRenderable);
-			pChunkRenderable->release();
-		}
-
+		world->addRegion(region);
 	    region->release();
 	}
+
+	map<ChunkLoc, Chunk *> chunks = world->getChunks();
+	map<ChunkLoc, Chunk *>::const_iterator chunkIter;
+	for (chunkIter = chunks.begin(); chunkIter != chunks.end(); chunkIter++)
+	{
+		pair<ChunkLoc, Chunk *> pair = *chunkIter;
+		Chunk *pChunk = pair.second;
+
+		ChunkRenderable *pChunkRenderable = new ChunkRenderable(pChunk);
+		scene->addRenderable(pChunkRenderable);
+		pChunkRenderable->release();
+	}
+
+	cout << "World contains " << chunks.size() << " chunks." << endl;
 
 	GLContext::setScene(scene);
 	GLContext::go();
 
     scene->release();
+	world->release();
 
     return 0;
 }

@@ -6,29 +6,39 @@
 
 #define CHUNK_OFFSET_SIZE_IN_BYTES 4096
 
+bool operator < (const ChunkLoc &l, const ChunkLoc &r)
+{
+	if (l.x != r.x) 
+	{
+		return l.x < r.x; 
+	}
+
+	return l.z < r.z;
+}
+
 Chunk::Chunk(const Region *region, const ChunkLocation *chunkLocation)
 {
-    setRegion(region);
-    setChunkLocation(chunkLocation);
-    go();
+	m_ChunkMode = eNoChunkBorders;
+
+	go(region, chunkLocation);
 }
 
 Chunk::Chunk(const Chunk &chunk)
 {
-    setRegion(chunk.getRegion());
-    setChunkLocation(chunk.getChunkLocation());
-    go();
+	setWorld(chunk.getWorld());
+	setLoc(chunk.getLoc());
+	const unsigned char *blocks = chunk.getBlocks();
+	memcpy(m_Blocks, blocks, CHUNK_WIDTH * CHUNK_WIDTH * CHUNK_HEIGHT);
 }
 
 Chunk::~Chunk()
 {
-    setRegion(0);
-    setChunkLocation(0);
+	setWorld(0);
 }
 
-void Chunk::go()
+void Chunk::go(const Region *region, const ChunkLocation *chunkLocation)
 {
-    unsigned char *dataStart = m_pRegion->getData() + (m_pChunkLocation->getOffset() * CHUNK_OFFSET_SIZE_IN_BYTES);
+    unsigned char *dataStart = region->getData() + (chunkLocation->getOffset() * CHUNK_OFFSET_SIZE_IN_BYTES);
     ChunkHeader *header = (ChunkHeader *)dataStart;
 
 	nbt::NbtBuffer *pBuffer = new nbt::NbtBuffer(dataStart + sizeof(ChunkHeader), header->getChunkLength());
@@ -39,8 +49,8 @@ void Chunk::go()
 
 	nbt::TagInt *xPos = (nbt::TagInt *)level->getValueAt("xPos");
 	nbt::TagInt *zPos = (nbt::TagInt *)level->getValueAt("zPos");
-	m_ChunkX = xPos->getValue();
-	m_ChunkZ = zPos->getValue();
+	m_Loc.x = xPos->getValue();
+	m_Loc.z = zPos->getValue();
 
 	//fill our blocks byte array
 	memset(m_Blocks, 0, CHUNK_WIDTH * CHUNK_WIDTH * CHUNK_HEIGHT);
@@ -59,14 +69,9 @@ void Chunk::go()
 	delete pBuffer;
 }
 
-void Chunk::setChunkLocation(const ChunkLocation *location)
+void Chunk::setWorld(World *world) 
 {
-    m_pChunkLocation = location;
-}
-
-void Chunk::setRegion(const Region *region)
-{
-    m_pRegion = region;
+	m_pWorld = world;
 }
 
 const char *Chunk::getClassName() const {

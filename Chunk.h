@@ -2,6 +2,8 @@
 
 #include "minecraft_def.h"
 
+#include "World.h"
+
 #include "cppNBT\src\cppnbt.h"
 #include "scottbase/Unknown.h"
 
@@ -10,10 +12,30 @@ using namespace std;
 
 class ChunkSection;
 class Region;
+class World;
 
 #define SECTION_HEIGHT 16
 #define CHUNK_WIDTH 16
 #define CHUNK_HEIGHT 256
+
+typedef enum ChunkMode {
+	eAllChunkBorders,
+	eVisibleChunkBorders,
+	eNoChunkBorders,
+} ChunkMode;
+
+typedef struct ChunkLoc {
+	ChunkLoc()
+		: x(0), z(0) {};
+
+	ChunkLoc(int x, int z)
+		: x(x), z(z) {};
+
+	int x;
+	int z;
+} ChunkLoc;
+
+bool operator < (const ChunkLoc &l, const ChunkLoc &r);
 
 class Chunk : public Unknown
 {
@@ -21,15 +43,68 @@ public:
     Chunk(const Region *region, const ChunkLocation *chunkLocation); //constructor!
     Chunk(const Chunk &chunk); //copy
 
-    const Region                *getRegion() const                                  { return m_pRegion; }
-    const ChunkLocation			*getChunkLocation() const                           { return m_pChunkLocation; }
-	const  int					getChunkX() const									{ return m_ChunkX; }
-	const  int					getChunkZ() const									{ return m_ChunkZ; }
+	const ChunkLoc				getLoc() const										{ return m_Loc; }
 
-	inline unsigned int	getBlockIdAt(unsigned int x, unsigned int y, unsigned int z) const
+	inline unsigned int	getBlockIdAt(int x, int y, int z) const
 	{
+		if (m_ChunkMode != eAllChunkBorders)
+		{
+			if (x < 0)
+			{
+				ChunkLoc loc(m_Loc.x - 1, m_Loc.z);
+				Chunk *pNeighbor = m_pWorld->getChunk(loc);
+
+				if (pNeighbor)
+				{
+					int blockId = pNeighbor->getBlockIdAt(CHUNK_WIDTH - 1, y, z);
+					return blockId;
+				}
+			}
+
+			if (x >= CHUNK_WIDTH)
+			{
+				ChunkLoc loc(m_Loc.x + 1, m_Loc.z);
+				Chunk *pNeighbor = m_pWorld->getChunk(loc);
+
+				if (pNeighbor)
+				{
+					int blockId = pNeighbor->getBlockIdAt(0, y, z);
+					return blockId;
+				}
+			}
+
+			if (z < 0)
+			{
+				ChunkLoc loc(m_Loc.x, m_Loc.z - 1);
+				Chunk *pNeighbor = m_pWorld->getChunk(loc);
+
+				if (pNeighbor)
+				{
+					int blockId = pNeighbor->getBlockIdAt(x, y, CHUNK_WIDTH - 1);
+					return blockId;
+				}
+			}
+
+			if (z >= CHUNK_WIDTH)
+			{
+				ChunkLoc loc(m_Loc.x, m_Loc.z + 1);
+				Chunk *pNeighbor = m_pWorld->getChunk(loc);
+
+				if (pNeighbor)
+				{
+					int blockId = pNeighbor->getBlockIdAt(x, y, 0);
+					return blockId;
+				}
+			}
+		}
+
 		if (x < 0 || x >= CHUNK_WIDTH || z < 0 || z >= CHUNK_WIDTH || y < 0 || y >= CHUNK_HEIGHT)
-		{ //not in this chunk, so return AIR for now
+		{ //not in this chunk
+			if (m_ChunkMode == eNoChunkBorders)
+			{
+				return 1;
+			}
+
 			return 0;
 		}
 
@@ -40,19 +115,22 @@ public:
 	//unknown
     const char                  *getClassName() const;
 
+	void						setWorld(World *world);
+
 protected:
     ~Chunk();
 
-    void                        setRegion(const Region *region);
-    void                        setChunkLocation(const ChunkLocation *location);
+	const unsigned char			*getBlocks() const		{ return &m_Blocks[0]; }
+	World						*getWorld() const		{ return m_pWorld; }
+
+	void						setLoc(ChunkLoc loc)	{ m_Loc = loc; }
 
 private:
-    const Region                *m_pRegion;
-    const ChunkLocation         *m_pChunkLocation;
+	World						*m_pWorld;
 
-	int							m_ChunkX;
-	int							m_ChunkZ;
+	ChunkMode					m_ChunkMode;
+	ChunkLoc					m_Loc;
 	unsigned char				m_Blocks[CHUNK_WIDTH * CHUNK_WIDTH * CHUNK_HEIGHT];
 
-    void go();
+    void						go(const Region *region, const ChunkLocation *chunkLocation);
 };

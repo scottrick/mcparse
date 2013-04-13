@@ -84,6 +84,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MCScene.cpp" />
     <ClCompile Include="Region.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chunk.h" />
@@ -92,6 +93,7 @@
     <ClInclude Include="MCScene.h" />
     <ClInclude Include="minecraft_def.h" />
     <ClInclude Include="Region.h" />
+    <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="opengl\opengl.vcxproj">

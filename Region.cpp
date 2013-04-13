@@ -5,6 +5,7 @@
 #include "minecraft_def.h"
 
 #include <fstream>
+#include <sstream>
 using namespace std;
 
 Region::Region(const string &fileName)
@@ -50,7 +51,24 @@ void Region::open()
 
     ifstream inStream;
 	inStream.open(fileName.c_str(), ios::in | ios::binary | ios::ate);
-	
+
+	size_t start = fileName.rfind("r.") + 2;
+	size_t end = fileName.rfind(".mca");
+	size_t coordLength = end - start;
+
+	string regionCoordinates = fileName.substr(start, coordLength);
+
+	size_t comma = regionCoordinates.rfind(".");
+
+	string xCoord = regionCoordinates.substr(0, comma);
+	string zCoord = regionCoordinates.substr(comma + 1, regionCoordinates.length() - comma - 1);
+
+	istringstream xStream(xCoord);
+	istringstream zStream(zCoord);
+
+	xStream >> regionX;
+	zStream >> regionZ;
+
 	if (inStream.is_open())
 	{
         int fileSize = (int)inStream.tellg();

@@ -46,7 +46,7 @@ void ChunkRenderable::makeBuffers()
 {
     shaderProgram = GLShaderManager::Manager()->getShaderProgram("shaders/BasicChunk");
 
-	model = glm::translate(glm::mat4(), glm::vec3((GLfloat)(pChunk->getChunkX() * CHUNK_WIDTH), 0.0f, (GLfloat)(pChunk->getChunkZ() * CHUNK_WIDTH)));
+	model = glm::translate(glm::mat4(), glm::vec3((GLfloat)(pChunk->getLoc().x * CHUNK_WIDTH), 0.0f, (GLfloat)(pChunk->getLoc().z * CHUNK_WIDTH)));
 
 	GLfloat *pVertexData = new GLfloat[4096 * 24 * 4];
 	GLuint *pElementData = new GLuint[4096 * 6 * 4];
@@ -58,11 +58,11 @@ void ChunkRenderable::makeBuffers()
 	unsigned int vertexIndex = 0;
 	numElements = 0;
 	
-	for (unsigned int x = 0; x < CHUNK_WIDTH; ++x)
+	for (int x = 0; x < CHUNK_WIDTH; ++x)
 	{
-		for (unsigned int z = 0; z < CHUNK_WIDTH; ++z)
+		for (int z = 0; z < CHUNK_WIDTH; ++z)
 		{
-			for (unsigned int y = 0; y < CHUNK_HEIGHT; ++y)
+			for (int y = 0; y < CHUNK_HEIGHT; ++y)
 			{
 				unsigned int blockId = pChunk->getBlockIdAt(x, y, z);
 
