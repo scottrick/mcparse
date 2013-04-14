@@ -48,7 +48,8 @@ void ChunkRenderable::makeBuffers()
 
 	model = glm::translate(glm::mat4(), glm::vec3((GLfloat)(pChunk->getLoc().x * CHUNK_WIDTH), 0.0f, (GLfloat)(pChunk->getLoc().z * CHUNK_WIDTH)));
 
-	GLfloat *pVertexData = new GLfloat[4096 * 24 * 4];
+	//each vertex (x, y, z), (i, j, k), (r, g, b)  position, normal, color
+	GLfloat *pVertexData = new GLfloat[4096 * 36 * 4];
 	GLuint *pElementData = new GLuint[4096 * 6 * 4];
 
     //setup the vertex and element index buffers
@@ -165,6 +166,12 @@ void ChunkRenderable::makeBuffers()
 					g = 0.2f;
 					b = 1.0f;
 				}
+				else if (blockId == 49) 
+				{ //obsidian
+					r = 0.05f;
+					g = 0.05f;
+					b = 0.125f;
+				}
 				else
 				{
 					r = 1.0f;
@@ -174,39 +181,51 @@ void ChunkRenderable::makeBuffers()
 
 				if (!top)
 				{ //add top triangles
-					unsigned int vertexStart = vertexIndex / 6;
+					unsigned int vertexStart = vertexIndex / 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x;
 					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
 					pVertexData[vertexIndex + 2] = (GLfloat)z;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 0.0f; //normal
+					pVertexData[vertexIndex + 4] = 1.0f; 
+					pVertexData[vertexIndex + 5] = 0.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x;
 					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
 					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 0.0f; //normal
+					pVertexData[vertexIndex + 4] = 1.0f; 
+					pVertexData[vertexIndex + 5] = 0.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
 					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
 					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 0.0f; //normal
+					pVertexData[vertexIndex + 4] = 1.0f; 
+					pVertexData[vertexIndex + 5] = 0.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
 					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
 					pVertexData[vertexIndex + 2] = (GLfloat)z;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 0.0f; //normal
+					pVertexData[vertexIndex + 4] = 1.0f; 
+					pVertexData[vertexIndex + 5] = 0.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pElementData[numElements + 0] = vertexStart + 3;
 					pElementData[numElements + 1] = vertexStart + 0;
@@ -219,39 +238,51 @@ void ChunkRenderable::makeBuffers()
 
 				if (!bottom)
 				{ //add bottom triangles
-					unsigned int vertexStart = vertexIndex / 6;
+					unsigned int vertexStart = vertexIndex / 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x;
 					pVertexData[vertexIndex + 1] = (GLfloat)y;
 					pVertexData[vertexIndex + 2] = (GLfloat)z;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 0.0f; //normal
+					pVertexData[vertexIndex + 4] = -1.0f; 
+					pVertexData[vertexIndex + 5] = 0.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x;
 					pVertexData[vertexIndex + 1] = (GLfloat)y;
 					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 0.0f; //normal
+					pVertexData[vertexIndex + 4] = -1.0f; 
+					pVertexData[vertexIndex + 5] = 0.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
 					pVertexData[vertexIndex + 1] = (GLfloat)y;
 					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 0.0f; //normal
+					pVertexData[vertexIndex + 4] = -1.0f; 
+					pVertexData[vertexIndex + 5] = 0.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
 					pVertexData[vertexIndex + 1] = (GLfloat)y;
 					pVertexData[vertexIndex + 2] = (GLfloat)z;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 0.0f; //normal
+					pVertexData[vertexIndex + 4] = -1.0f; 
+					pVertexData[vertexIndex + 5] = 0.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pElementData[numElements + 0] = vertexStart + 2;
 					pElementData[numElements + 1] = vertexStart + 1;
@@ -264,39 +295,51 @@ void ChunkRenderable::makeBuffers()
 
 				if (!xMinus)
 				{ //add xMinus triangles
-					unsigned int vertexStart = vertexIndex / 6;
+					unsigned int vertexStart = vertexIndex / 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x;
 					pVertexData[vertexIndex + 1] = (GLfloat)y;
 					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = -1.0f; //normal
+					pVertexData[vertexIndex + 4] = 0.0f; 
+					pVertexData[vertexIndex + 5] = 0.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x;
 					pVertexData[vertexIndex + 1] = (GLfloat)y;
 					pVertexData[vertexIndex + 2] = (GLfloat)z;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = -1.0f; //normal
+					pVertexData[vertexIndex + 4] = 0.0f; 
+					pVertexData[vertexIndex + 5] = 0.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x;
 					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
 					pVertexData[vertexIndex + 2] = (GLfloat)z;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = -1.0f; //normal
+					pVertexData[vertexIndex + 4] = 0.0f; 
+					pVertexData[vertexIndex + 5] = 0.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x;
 					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
 					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = -1.0f; //normal
+					pVertexData[vertexIndex + 4] = 0.0f; 
+					pVertexData[vertexIndex + 5] = 0.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pElementData[numElements + 0] = vertexStart + 1;
 					pElementData[numElements + 1] = vertexStart + 0;
@@ -309,39 +352,51 @@ void ChunkRenderable::makeBuffers()
 
 				if (!xPlus)
 				{ //add xPlus triangles
-					unsigned int vertexStart = vertexIndex / 6;
+					unsigned int vertexStart = vertexIndex / 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
 					pVertexData[vertexIndex + 1] = (GLfloat)y;
 					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 1.0f; //normal
+					pVertexData[vertexIndex + 4] = 0.0f; 
+					pVertexData[vertexIndex + 5] = 0.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
 					pVertexData[vertexIndex + 1] = (GLfloat)y;
 					pVertexData[vertexIndex + 2] = (GLfloat)z;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 1.0f; //normal
+					pVertexData[vertexIndex + 4] = 0.0f; 
+					pVertexData[vertexIndex + 5] = 0.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
 					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
 					pVertexData[vertexIndex + 2] = (GLfloat)z;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 1.0f; //normal
+					pVertexData[vertexIndex + 4] = 0.0f; 
+					pVertexData[vertexIndex + 5] = 0.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
 					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
 					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 1.0f; //normal
+					pVertexData[vertexIndex + 4] = 0.0f; 
+					pVertexData[vertexIndex + 5] = 0.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pElementData[numElements + 0] = vertexStart + 1;
 					pElementData[numElements + 1] = vertexStart + 3;
@@ -354,39 +409,51 @@ void ChunkRenderable::makeBuffers()
 
 				if (!zMinus)
 				{ //add zMinus triangles
-					unsigned int vertexStart = vertexIndex / 6;
+					unsigned int vertexStart = vertexIndex / 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x;
 					pVertexData[vertexIndex + 1] = (GLfloat)y;
 					pVertexData[vertexIndex + 2] = (GLfloat)z;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 0.0f; //normal
+					pVertexData[vertexIndex + 4] = 0.0f; 
+					pVertexData[vertexIndex + 5] = -1.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
 					pVertexData[vertexIndex + 1] = (GLfloat)y;
 					pVertexData[vertexIndex + 2] = (GLfloat)z;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 0.0f; //normal
+					pVertexData[vertexIndex + 4] = 0.0f; 
+					pVertexData[vertexIndex + 5] = -1.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
 					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
 					pVertexData[vertexIndex + 2] = (GLfloat)z;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 0.0f; //normal
+					pVertexData[vertexIndex + 4] = 0.0f; 
+					pVertexData[vertexIndex + 5] = -1.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x;
 					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
 					pVertexData[vertexIndex + 2] = (GLfloat)z;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 0.0f; //normal
+					pVertexData[vertexIndex + 4] = 0.0f; 
+					pVertexData[vertexIndex + 5] = -1.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pElementData[numElements + 0] = vertexStart + 0;
 					pElementData[numElements + 1] = vertexStart + 2;
@@ -399,39 +466,51 @@ void ChunkRenderable::makeBuffers()
 
 				if (!zPlus)
 				{ //add zPlus triangles
-					unsigned int vertexStart = vertexIndex / 6;
+					unsigned int vertexStart = vertexIndex / 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x;
 					pVertexData[vertexIndex + 1] = (GLfloat)y;
 					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 0.0f; //normal
+					pVertexData[vertexIndex + 4] = 0.0f; 
+					pVertexData[vertexIndex + 5] = 1.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
 					pVertexData[vertexIndex + 1] = (GLfloat)y;
 					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 0.0f; //normal
+					pVertexData[vertexIndex + 4] = 0.0f; 
+					pVertexData[vertexIndex + 5] = 1.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x + 1.0f;
 					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
 					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 0.0f; //normal
+					pVertexData[vertexIndex + 4] = 0.0f; 
+					pVertexData[vertexIndex + 5] = 1.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pVertexData[vertexIndex + 0] = (GLfloat)x;
 					pVertexData[vertexIndex + 1] = (GLfloat)y + 1.0f;
 					pVertexData[vertexIndex + 2] = (GLfloat)z + 1.0f;
-					pVertexData[vertexIndex + 3] = r; //r
-					pVertexData[vertexIndex + 4] = g; //g
-					pVertexData[vertexIndex + 5] = b; //b
-					vertexIndex += 6;
+					pVertexData[vertexIndex + 3] = 0.0f; //normal
+					pVertexData[vertexIndex + 4] = 0.0f; 
+					pVertexData[vertexIndex + 5] = 1.0f; 
+					pVertexData[vertexIndex + 6] = r; //r
+					pVertexData[vertexIndex + 7] = g; //g
+					pVertexData[vertexIndex + 8] = b; //b
+					vertexIndex += 9;
 
 					pElementData[numElements + 0] = vertexStart + 0;
 					pElementData[numElements + 1] = vertexStart + 1;
@@ -485,11 +564,15 @@ void ChunkRenderable::render() const
 
     GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
     glEnableVertexAttribArray(posAttrib);
-    glVertexAttribPointer(posAttrib, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), 0);
+    glVertexAttribPointer(posAttrib, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), 0);
 
-    GLint colorAttrib = glGetAttribLocation(shaderProgram, "color");
+    GLint normalAttrib = glGetAttribLocation(shaderProgram, "normal");
+    glEnableVertexAttribArray(normalAttrib);
+    glVertexAttribPointer(normalAttrib, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (void *) (3 * sizeof(GLfloat)));
+
+	GLint colorAttrib = glGetAttribLocation(shaderProgram, "color");
     glEnableVertexAttribArray(colorAttrib);
-    glVertexAttribPointer(colorAttrib, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void *) (3 * sizeof(GLfloat)));
+    glVertexAttribPointer(colorAttrib, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (void *) (6 * sizeof(GLfloat)));
 
 	GLuint modelTransformUniform = glGetUniformLocation(shaderProgram, "model");
 	glUniformMatrix4fv(modelTransformUniform, 1, GL_FALSE, glm::value_ptr(model));
