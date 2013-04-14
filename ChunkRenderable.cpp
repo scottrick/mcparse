@@ -58,7 +58,7 @@ void ChunkRenderable::makeBuffers()
 
 	unsigned int vertexIndex = 0;
 	numElements = 0;
-	
+
 	for (int x = 0; x < CHUNK_WIDTH; ++x)
 	{
 		for (int z = 0; z < CHUNK_WIDTH; ++z)
@@ -99,6 +99,18 @@ void ChunkRenderable::makeBuffers()
 					r = 0.35f;
 					g = 0.35f;
 					b = 0.35f;
+				}
+				else if (blockId == 13 || blockId == 14 || blockId == 15 || blockId == 16 || blockId == 21) 
+				{ //gravel, gold, iron, coal, lapiz
+					r = 0.35f;
+					g = 0.35f;
+					b = 0.35f;
+				}
+				else if (blockId == 50) 
+				{ //torch
+					r = 1.0f;
+					g = 1.0f;
+					b = 0.0f;
 				}
 				else if (blockId == 5) 
 				{ //wood plank
@@ -160,8 +172,8 @@ void ChunkRenderable::makeBuffers()
 					g = 0.0f;
 					b = 0.0f;
 				}
-				else if (blockId == 56) 
-				{ //diamond
+				else if (blockId == 56 || blockId == 57)
+				{ //diamond, block of diamond
 					r = 0.2f;
 					g = 0.2f;
 					b = 1.0f;
