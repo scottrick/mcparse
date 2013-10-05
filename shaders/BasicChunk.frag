@@ -7,6 +7,6 @@ out vec3 outColor;
 
 void main()
 {
-	outColor = vertexColor * (dot(fragNormal, vec3(0.05, 1.0, 0.025)) + 0.25);
+	outColor = vertexColor * (dot(fragNormal, vec3(0.05, 1.0, 0.025)) + 0.45);
 	outColor = clamp(outColor, 0.0, 1.0);
 }

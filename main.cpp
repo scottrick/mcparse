@@ -51,15 +51,15 @@ int main(int numArgs, char **args)
 	//regionFiles.push_back("\\region\\r.0.-1.mca");
 	//regionFiles.push_back("\\region\\r.-1.-1.mca");
 	//regionFiles.push_back("\\region\\oldserver.r.0.0.mca");
-	//regionFiles.push_back("\\region\\oldserver.r.-1.0.mca");
+	regionFiles.push_back("\\region\\oldserver.r.-1.0.mca");
 	//regionFiles.push_back("\\region\\oldserver.r.0.-1.mca");
 	//regionFiles.push_back("\\region\\oldserver.r.-1.-1.mca");
 	//regionFiles.push_back("\\region\\oldserver.r.0.-2.mca");
-	regionFiles.push_back("\\region\\work.r.0.0.mca");
+	//regionFiles.push_back("\\region\\work.r.0.0.mca");
 	//regionFiles.push_back("\\region\\work.r.-1.0.mca");
 	//regionFiles.push_back("\\region\\work.r.0.-1.mca");
 	//regionFiles.push_back("\\region\\work.r.-1.-1.mca");
-	regionFiles.push_back("\\region\\work.r.0.1.mca");
+	//regionFiles.push_back("\\region\\work.r.0.1.mca");
 
 	vector<std::string>::iterator iter;
 	for (iter = regionFiles.begin(); iter != regionFiles.end(); iter++)
